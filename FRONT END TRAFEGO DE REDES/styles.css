@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+
+    background-color: rgb(2, 72, 138); /* Cor de fundo da navbar */
+    overflow: hidden; /* Evita que o conteúdo ultrapasse os limites */
+}
+
+.navbar ul {
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Usamos flexbox para alinhar os itens na horizontal */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+}
+
+.navbar li {
+    margin: 0 150px; /* Espaçamento entre os itens */
+}
+
+.navbar a {
+    color: rgb(255, 255, 255); /* Cor do texto */
+    text-decoration: none; /* Remove o sublinhado */
+    font-size: 18px; /* Tamanho da fonte */
+    padding: 14px 20px; /* Espaçamento interno */
+    display: block; /* Faz com que o link ocupe toda a área do item */
+    transition: background-color 0.3s; /* Transição suave para a mudança de cor */
+}
+
+.navbar a:hover {
+    background-color: #ddd; /* Cor de fundo ao passar o mouse */
+    color: rgb(4, 57, 107); /* Cor do texto ao passar o mouse */
+}
