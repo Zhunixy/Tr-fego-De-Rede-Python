@@ -1,0 +1,125 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+body{
+  background: linear-gradient(135deg, #06193d, #2a5298);
+  height: 100vh;
+  margin: 0;
+  
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #06193d;
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+}
+
+.logo{
+  height: 40px;
+  width: auto;
+
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 100px;
+  
+}
+.nav-links li { 
+  display: inline;
+}
+/* O Nav-links com o "a" na frente, engloba todos os links dentro que estão dentro de um "li" da classe "nav-links" */
+.nav-links a { 
+
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+  background: rgba(31, 52, 245, 0.514); 
+  color: #fdfdfd; 
+}
+
+.botao {
+  background-color: #385cff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.botao:hover {
+  background-color: #2a5298;
+}
+
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.texto-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+
+}
+
+table {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 250px;
+}
+
+table, th, td {
+  border-bottom:#385cff;
+  text-align: center;
+}
+
+tr, th {
+  border-bottom: 1px solid #06193d;
+  text-align: center;
+}
+
+tr:nth-child(odd) {background-color: #2a5298;}
+tr:hover {background-color: #06193d;}
+
+
+.btn_tabela {
+  display: block;
+  margin: 0 auto;
+  background-color: #385cff;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.btn_tabela:hover {
+  background-color: #2a5298;
+}
