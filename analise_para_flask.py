@@ -34,7 +34,7 @@ def analisar_pacotes():  # Define a função principal que vai analisar os pacot
         except Exception as e:  # Se ocorrer qualquer erro dentro do bloco try.
             print(f"Erro ao processar pacote: {str(e)}")  # Exibe uma mensagem de erro com a descrição do erro.
             continue  # Continua o loop com o próximo pacote, ignorando o pacote que causou o erro.
-
+            
     captura.close()  # Fecha a captura de pacotes após o loop de pacotes.
     return dados  # Retorna a lista de dados coletados dos pacotes.
 
