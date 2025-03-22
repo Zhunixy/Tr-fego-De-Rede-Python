@@ -29,7 +29,7 @@ def main():
 
 @app.route("/sobre", methods = ["GET", "POST"])
 def main():
-    return"<div>pintos e bolas</div>"
+    return"<div>pintos, bolas e putas</div>"
     
 
 
