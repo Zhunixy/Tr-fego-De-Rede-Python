@@ -2,8 +2,8 @@
 
 require_once 'db.php';
 
-$name = 'Wlademir';
-$email = 'tonymartinsjunior@gmail.com';
+$name = '';
+$email = '';
 $password = md5('123465');
 
 if (empty($name) || empty($email) || empty($password)) {
