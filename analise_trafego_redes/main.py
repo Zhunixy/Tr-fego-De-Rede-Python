@@ -24,6 +24,13 @@ def main():
             return render_template("index.html", texto="boiolas", tabela=tabela)
     else:
         return render_template("index.html", texto="boiolas", tabela=0)
+    
+
+
+@app.route("/sobre", methods = ["GET", "POST"])
+def main():
+    return"<div>pintos</div>"
+    
 
 
 app.run(debug=True)
