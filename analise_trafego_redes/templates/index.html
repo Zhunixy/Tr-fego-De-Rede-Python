@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SharkFlow</title>   <!-- Title = titulo da página, e logo abaixo o link, que serve para linkar o documento css com o html.   -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+
+</head>
+
+<body>
+  
+  <nav class="navbar">
+
+      <div class="logo-container">
+      <img src="{{url_for('static', filename='/images/SharkFlowLogo.png')}}" alt="LogoDaSharkFlow" class="logo">
+      <span class="texto-logo">SharkFlow</span>
+      </div>
+      <ul class="nav-links">
+
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Sobre</a></li>  
+        <li><a href="#">Documentação</a></li>
+
+      </ul>
+      <button class="botao">Login</button>
+    </nav>
+  <main>
+    <div class="logofundo"></div>
+
+  {% if tabela: %}
+    <div style="overflow-x:auto;"></div>
+      <table class="tabela">
+        <tr>
+          <th>Hora/Data</th>
+          <th>IP_origem</th>
+          <th>IP_destino</th>
+          <th>Porta_origem</th>
+          <th>Porta_destino</th>
+          <th>Protocolo</th>
+          <th>Tamanho</th>
+          <th>Status</th>
+        </tr>
+        {% for item in tabela: %}
+        <tr>
+          <th>{{item.Hora}}</th>
+          <th>{{item.IP_origem}}</th>
+          <th>{{item.IP_destino}}</th>
+          <th>{{item.Porta_origem}}</th>
+          <th>{{item.Porta_destino}}</th>
+          <th>{{item.Protocolo}}</th>
+          <th>{{item.Tamanho}}</th>
+          <th>{{item.Status}}</th>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+    <form action="#" method="post">
+      <p><br><br><br><br></p>
+      <button class="btn_tabela" name="recarregar">recarregar tabela</button>
+      <button class="btn_tabela" value="encerrar tabela" name="encerrar">encerrar tabela</button>
+    </form>
+  {% else %}
+    <form action="#" method="post">
+      <p><br><br><br><br></p>
+      <button class="btn_tabela" name="iniciar">iniciar tabela</button>
+    </form>
+  {% endif %}
+</main>
+</body>
+</html>
