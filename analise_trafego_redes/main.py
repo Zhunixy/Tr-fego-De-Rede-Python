@@ -131,7 +131,7 @@ app = Flask(__name__)
 def main():
     if request.method == "POST":
         if request.form.get('encerrar') == 'encerrar tabela':
-            return render_template("index.html", tabela=0)
+            return render_template("index.html")
         else:
             try:
                 tabela = analisar_pacotes()[0]
@@ -143,6 +143,6 @@ def main():
 
                 return render_template("index.html", erro=1)
     else:
-        return render_template("index.html", tabela=0)
+        return render_template("index.html")
 
 app.run(debug=True)
