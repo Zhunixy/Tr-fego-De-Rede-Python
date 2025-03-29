@@ -6,56 +6,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SharkFlow</title>   <!-- Title = titulo da página, e logo abaixo o link, que serve para linkar o documento css com o html.   -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
-
 </head>
 
 <body>
   
   <nav class="navbar">
-
       <div class="logo-container">
       <img src="{{url_for('static', filename='/images/SharkFlowLogo.png')}}" alt="LogoDaSharkFlow" class="logo">
       <span class="texto-logo">SharkFlow</span>
       </div>
       <ul class="nav-links">
-
         <li><a href="#">Início</a></li>
         <li><a href="#">Sobre</a></li>  
         <li><a href="#">Documentação</a></li>
-
       </ul>
       <button class="botao">Login</button>
+      <a class="leave" href="">Sair/<i class="fa-solid fa-right-from-bracket"></i></a>
     </nav>
   <main>
-    <div class="logofundo"></div>
+    <div class="main">
+      <h1 id="typing">Bem Vindo Ao <br> <br> <span>Sistema</span></h1> <br>
+      <br><br>
+    </div>
+    <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
+    <center>
+    <i class="fa-solid fa-arrow-down flecha"></i>
+  </center>
+    {% if tabela: %}
+    
+    <div style="overflow-x:auto;"></div>
+      <table class="tabela">
+        <tr>
+          <th>Hora/Data</th>
+          <th>IP_origem</th>
+          <th>IP_destino</th>
+          <th>Porta_origem</th>
+          <th>Porta_destino</th>
+          <th>MAC_origem</th>
+          <th>MAC_destino</th>
+          <th>Protocolo</th>
+          <th>Tamanho</th>
+        </tr>
+        {% for item in tabela: %}
+        <tr>
+          <th>{{item.Hora}}</th>
+          <th>{{item.IP_origem}}</th>
+          <th>{{item.IP_destino}}</th>
+          <th>{{item.Porta_origem}}</th>
+          <th>{{item.Porta_destino}}</th>
+          <th>{{item.MAC_origem}}</th>
+          <th>{{item.MAC_destino}}</th>
+          <th>{{item.Protocolo}}</th>
+          <th>{{item.Tamanho}}</th>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
 
-  {% if tabela: %}
-    <table class="tabela">
-      <tr>
-        <th>Hora/Data</th>
-        <th>IP_origem</th>
-        <th>IP_destino</th>
-        <th>Porta_origem</th>
-        <th>Porta_destino</th>
-        <th>MAC_origem</th>
-        <th>MAC_destino</th>
-        <th>Protocolo</th>
-        <th>Tamanho</th>
-      </tr>
-      {% for item in tabela: %}
-      <tr>
-        <th>{{item.Hora}}</th>
-        <th>{{item.IP_origem}}</th>
-        <th>{{item.IP_destino}}</th>
-        <th>{{item.Porta_origem}}</th>
-        <th>{{item.Porta_destino}}</th>
-        <th>{{item.MAC_origem}}</th>
-        <th>{{item.MAC_destino}}</th>
-        <th>{{item.Protocolo}}</th>
-        <th>{{item.Tamanho}}</th>
-      </tr>
-      {% endfor %}
-    </table>
     <form action="#" method="post">
       <p><br><br><br><br></p>
       <button class="btn_tabela" name="recarregar">recarregar tabela</button>
@@ -64,9 +71,10 @@
   {% else %}
     <form action="#" method="post">
       <p><br><br><br><br></p>
-      <button class="btn_tabela" name="iniciar">iniciar tabela</button>
+      <button class="btn_tabela" name="iniciar">Iniciar tabela</button>
     </form>
   {% endif %}
 </main>
+<script src="../static/script.js"></script><script src="https://kit.fontawesome.com/951dd3b656.js" crossorigin="anonymous"></script>
 </body>
 </html>

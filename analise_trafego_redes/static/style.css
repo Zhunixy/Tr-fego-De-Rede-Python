@@ -1,77 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-
+  font-family: "Poppins", sans-serif;
 }
 
 body{
-  background: linear-gradient(135deg, #06193d, #2a5298);
   height: 100vh;
   margin: 0;
-  
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background-color: #06193d;
-  color: white;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 15px 20px !important;
+  background-color: #000000 !important;
+  color: white !important;
+  width: 100% !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
 }
 
-.logo{
+.logo{ 
   height: 40px;
   width: auto;
 
 }
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 100px;
-  
+  list-style: none !important;
+  display: flex!important;
+  gap: 20px!important;
 }
 .nav-links li { 
-  display: inline;
+  display: inline!important;
+  
 }
 /* O Nav-links com o "a" na frente, engloba todos os links dentro que estão dentro de um "li" da classe "nav-links" */
 .nav-links a { 
+  text-decoration: none !important;
+  color: white !important;
+  font-size: 1rem !important;
+  padding: 10px 15px !important;
+  border-radius: 5px !important;
+  transition: 0.3s, color 0.3s !important;
+  letter-spacing: 1px !important;
+  margin-top: 8px !important;
+}
 
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background 0.3s, color 0.3s;
+.icon{
+  margin-right: 4px;
 }
 
 .nav-links a:hover {
-  background: rgba(31, 52, 245, 0.514); 
+  background: rgb(31, 53, 245); 
   color: #fdfdfd; 
 }
 
-.botao {
-  background-color: #385cff;
+.main {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+.p{
+  letter-spacing: 1px;
+}
+
+.flecha {
+  margin-top: 4rem;
+  text-align: center !important;
+  font-size: 1.5rem;
+  animation: anima 1s infinite alternate ease-in-out;
+}
+
+@keyframes anima {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-30px);
+  }
+}
+
+.main h1 {
+  font-size: 7rem;
+  white-space: nowrap; /* Evita quebra de linha */
+  overflow: hidden; /* Esconde o texto extra */
+  border-right: 4px solid black; /* Simula um cursor piscante */
+  animation: blinkCursor 0.8s infinite;
+}
+
+.leave{
+  text-decoration: none;
   color: white;
-  border: none;
-  padding: 8px 15px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 5px;
+}
+
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.botao {
+  background: none !important;
+  color: #ffffff !important;
+  border: 2px solid #385cff !important;
+  padding: 8px 15px !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  border-radius: 5px !important;
+  margin-right: -580px !important;
+}
+
+.leave:hover{
+  color: #144bff;
 }
 
 .botao:hover {
-  background-color: #2a5298;
+  background-color: #ffffff;
 }
-
 
 .logo-container {
   display: flex;
@@ -85,25 +139,7 @@ body{
   color: white;
 
 }
-
-.logofundo {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(images/SharkFlowLogo.png) ;
-  background-size: 100%;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.1;
-  pointer-events: none;
-}
-
 .tabela {
-  overflow-x: auto;
-  overflow-y: auto;
   width: 80%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -145,20 +181,30 @@ main {
 .tabela tbody:empty {
   background-color: #e0e0e0;
 }
+tr:hover {background-color: #06193d;}
+
 
 .btn_tabela {
   display: block;
   margin: 0 auto;
-  background-color: #385cff;
-  color: white;
-  border: none;
-  padding: 8px 15px;
+  background: none;
+  color: #144bff;
+  border: 2px solid #144bff;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 17px;
   border-radius: 5px;
-  z-index: 2;
+  width: 18rem !important;
+  padding: 15px;
+  margin-top: -4rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border-radius: 2rem;
+  transition: 0.3s;
 }
 
 .btn_tabela:hover {
-  background-color: #2a5298;
-}
+  background-color: #144bff;
+  border: 2px solid #144bff;
+  color: #ffffff;
+  transition: 0.3s;
+} 
