@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SharkFlow</title>   <!-- Title = titulo da página, e logo abaixo o link, que serve para linkar o documento css com o html.   -->
+  <title>SharkFlow</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 </head>
 
@@ -32,9 +31,9 @@
     <center>
     <i class="fa-solid fa-arrow-down flecha"></i>
   </center>
-    {% if tabela: %}
-    
-    <div style="overflow-x:auto;"></div>
+
+  {% if show_table and tabela %}
+    <div style="overflow-x:auto;">
       <table class="tabela">
         <tr>
           <th class="attr">Hora/Data</th>
@@ -47,7 +46,7 @@
           <th class="attr">Protocolo</th>
           <th class="attr">Tamanho</th>
         </tr>
-        {% for item in tabela: %}
+        {% for item in tabela %}
         <tr>
           <th>{{item.Hora}}</th>
           <th>{{item.IP_origem}}</th>
@@ -63,14 +62,53 @@
       </table>
     </div>
 
-    <form action="#" method="post">
-      <p><br><br><br><br></p>
-      <button class="btn_tabela" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
-      <button class="btn_tabela" value="encerrar tabela" name="encerrar">Encerrar tabela</button> <br> <br> <br> <br>
+    {% if total_pages > 1 %}
+    <div class="pagination-container">
+      <div class="pagination">
+        {% if page > 1 %}
+          <a href="{{ url_for('main', page=page-1, tabela=1) }}" class="page-link">&laquo;</a>
+        {% endif %}
+        
+        {% set start_page = [1, page-2]|max %}
+        {% set end_page = [total_pages, page+2]|min %}
+        
+        {% if start_page > 1 %}
+          <a href="{{ url_for('main', page=1, tabela=1) }}" class="page-link">1</a>
+          {% if start_page > 2 %}
+            <span class="page-dots">...</span>
+          {% endif %}
+        {% endif %}
+        
+        {% for p in range(start_page, end_page + 1) %}
+          {% if p == page %}
+            <a href="{{ url_for('main', page=p, tabela=1) }}" class="page-link active">{{ p }}</a>
+          {% else %}
+            <a href="{{ url_for('main', page=p, tabela=1) }}" class="page-link">{{ p }}</a>
+          {% endif %}
+        {% endfor %}
+        
+        {% if end_page < total_pages %}
+          {% if end_page < total_pages - 1 %}
+            <span class="page-dots">...</span>
+          {% endif %}
+          <a href="{{ url_for('main', page=total_pages, tabela=1) }}" class="page-link">{{ total_pages }}</a>
+        {% endif %}
+        
+        {% if page < total_pages %}
+          <a href="{{ url_for('main', page=page+1, tabela=1) }}" class="page-link">&raquo;</a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('main') }}" method="post">
+      <p><br><br><br></p>
+      <button class="btn_tabela" name="recarregar">Recarregar tabela</button> 
+      <button class="btn_tabela" name="encerrar">Encerrar tabela</button> <br>
     </form>
   {% else %}
-    <form action="#" method="post">
-      <p><br><br><br><br></p>
+    <form action="{{ url_for('main') }}" method="post">
+      <p><br><br><br></p>
       <button class="btn_tabela" name="iniciar">Iniciar tabela</button>
     </form>
   {% endif %}

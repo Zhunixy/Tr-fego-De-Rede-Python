@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 
-body{
+body {
   height: 100vh;
   margin: 0;
 }
@@ -25,21 +25,21 @@ body{
   left: 0 !important;
 }
 
-.logo{ 
+.logo { 
   height: 40px;
   width: auto;
-
 }
 
 .nav-links {
   list-style: none !important;
-  display: flex!important;
-  gap: 20px!important;
+  display: flex !important;
+  gap: 20px !important;
 }
+
 .nav-links li { 
-  display: inline!important;
+  display: inline !important;
 }
-/* O Nav-links com o "a" na frente, engloba todos os links dentro que estão dentro de um "li" da classe "nav-links" */
+
 .nav-links a { 
   text-decoration: none !important;
   color: white !important;
@@ -51,14 +51,13 @@ body{
   margin-top: 8px !important;
 }
 
-.icon{
+.icon {
   margin-right: 4px;
 }
 
 .nav-links a:hover {
-  background: rgb(31, 53, 245); 
-  color: #fdfdfd; 
-  background-color: #144bff;
+  background-color: #144bff !important;
+  color: #fdfdfd !important;
 }
 
 .main {
@@ -69,7 +68,7 @@ body{
   margin-top: 10rem;
 }
 
-.p{
+.p {
   letter-spacing: 1px;
 }
 
@@ -91,15 +90,10 @@ body{
 
 .main h1 {
   font-size: 7rem;
-  white-space: nowrap; /* Evita quebra de linha */
-  overflow: hidden; /* Esconde o texto extra */
-  border-right: 4px solid black; /* Simula um cursor piscante */
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid black;
   animation: blinkCursor 0.8s infinite;
-}
-
-.leave{
-  text-decoration: none;
-  color: white;
 }
 
 @keyframes blinkCursor {
@@ -116,10 +110,7 @@ body{
   cursor: pointer !important;
   font-size: 16px !important;
   border-radius: 5px !important;
-}
-
-.leave:hover{
-  color: #144bff;
+  transition: all 0.3s !important;
 }
 
 .botao:hover {
@@ -138,34 +129,29 @@ body{
   font-size: 20px;
   font-weight: bold;
   color: white;
-
 }
+
 .tabela {
   width: 80%;
   border-collapse: collapse;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
   min-height: 150px;
 }
 
 .tabela th {
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
   padding: 10px;
   border: 1px solid #000000;
   text-align: center;
 }
 
-.tabela th:hover{
-  background-color: #144bff !important;
-  color: white !important;
-  border: 2px solid #144bff !important;
-}
-
-.tabela .attr{
+.tabela .attr {
   background-color: #144bff;
   color: white;
+}
+
+.tabela th:hover {
+  background-color: #144bff !important;
+  color: white !important;
 }
 
 .tabela td {
@@ -177,7 +163,7 @@ body{
 }
 
 main {
-  padding-top: 120px
+  padding-top: 120px;
 }
 
 .tabela tbody tr:nth-child(even) {
@@ -186,13 +172,7 @@ main {
 
 .tabela tbody tr:hover {
   background-color: #d3d3d3; 
-
 }
-
-.tabela tbody:empty {
-  background-color: #e0e0e0;
-}
-
 
 .btn_tabela {
   display: block;
@@ -202,19 +182,80 @@ main {
   border: 2px solid #144bff;
   cursor: pointer;
   font-size: 17px;
-  border-radius: 5px;
+  border-radius: 2rem;
   width: 18rem !important;
   padding: 15px;
-  margin-top: -4rem;
+  margin-top: 20px;
   letter-spacing: 1px;
   font-weight: 500;
-  border-radius: 2rem;
-  transition: 0.3s;
+  transition: all 0.3s;
 }
 
 .btn_tabela:hover {
   background-color: #144bff;
-  border: 2px solid #144bff;
   color: #ffffff;
-  transition: 0.3s;
-} 
+}
+
+/* Paginação melhorada */
+.pagination-container {
+  width: 100%;
+  padding: 10px 0;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  max-width: 100%;
+}
+
+.page-link {
+  padding: 8px 12px;
+  min-width: 40px;
+  text-align: center;
+  text-decoration: none;
+  color: #144bff;
+  border: 1px solid #144bff;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.page-link:hover, 
+.page-link.active {
+  background-color: #144bff;
+  color: white;
+}
+
+.page-dots {
+  padding: 8px 12px;
+  color: #144bff;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .main h1 {
+    font-size: 4rem;
+  }
+  
+  .tabela {
+    width: 95%;
+    font-size: 0.9rem;
+  }
+  
+  .pagination {
+    gap: 3px;
+  }
+  
+  .page-link {
+    padding: 6px 10px;
+    min-width: 35px;
+  }
+  
+  .btn_tabela {
+    width: 90% !important;
+  }
+}

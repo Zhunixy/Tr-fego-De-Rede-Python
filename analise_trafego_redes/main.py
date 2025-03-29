@@ -1,7 +1,8 @@
-from flask import Flask, url_for, render_template, request
+from flask import Flask, url_for, render_template, request, redirect
 from random import randint
 import pyshark
 import asyncio
+import math
 
 lista_analise = []
 pacotes_protocolo = []
@@ -14,7 +15,7 @@ def analisar_pacotes():
 
     captura = pyshark.FileCapture('captura.pcap')
 
-        # Estatísticas
+    # Estatísticas
     total_pacotes = 0
     pacotes_por_protocolo = {}
     pacotes_por_ip_origem = {}
@@ -113,18 +114,34 @@ def analisar_pacotes():
 
 app = Flask(__name__)
 
-@app.route("/", methods = ["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def main():
     if request.method == "POST":
-        if request.form.get('encerrar') == 'encerrar tabela':
-            return render_template("index.html", tabela=0)
-        else:
-            tabela = analisar_pacotes()[0]
-            protocolos_geral = analisar_pacotes()[1]
-            IP_origem_geral = analisar_pacotes()[2]
-            IP_destino_geral = analisar_pacotes()[3]
-            return render_template("index.html", tabela=tabela, protocolos_geral=protocolos_geral, IP_origem_geral=IP_origem_geral, IP_destino_geral=IP_destino_geral)
+        if 'encerrar' in request.form:
+            return render_template("index.html", tabela=0, show_table=False)
+        elif 'iniciar' in request.form or 'recarregar' in request.form:
+            return redirect(url_for('main', tabela=1, page=1))
+    
+    if request.args.get('tabela') == '1' or 'page' in request.args:
+        tabela_completa = analisar_pacotes()[0]
+        
+        page = request.args.get('page', 1, type=int)
+        per_page = 10
+        
+        total_pages = math.ceil(len(tabela_completa) / per_page)
+        start = (page - 1) * per_page
+        end = start + per_page
+        tabela = tabela_completa[start:end]
+        
+        return render_template(
+            "index.html", 
+            tabela=tabela,
+            page=page,
+            total_pages=total_pages,
+            show_table=True
+        )
     else:
-        return render_template("index.html", tabela=0)
+        return render_template("index.html", tabela=0, show_table=False)
 
-app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
