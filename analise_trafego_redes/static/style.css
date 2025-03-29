@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body{
+  height: 100vh;
+  margin: 0;
+}
+
+.navbar {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 15px 20px !important;
+  background-color: #000000 !important;
+  color: white !important;
+  width: 100% !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+.logo{ 
+  height: 40px;
+  width: auto;
+
+}
+
+.nav-links {
+  list-style: none !important;
+  display: flex!important;
+  gap: 20px!important;
+}
+.nav-links li { 
+  display: inline!important;
+}
+/* O Nav-links com o "a" na frente, engloba todos os links dentro que estão dentro de um "li" da classe "nav-links" */
+.nav-links a { 
+  text-decoration: none !important;
+  color: white !important;
+  font-size: 1rem !important;
+  padding: 10px 15px !important;
+  border-radius: 5px !important;
+  transition: 0.3s, color 0.3s !important;
+  letter-spacing: 1px !important;
+  margin-top: 8px !important;
+}
+
+.icon{
+  margin-right: 4px;
+}
+
+.nav-links a:hover {
+  background: rgb(31, 53, 245); 
+  color: #fdfdfd; 
+  background-color: #144bff;
+}
+
+.main {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10rem;
+}
+
+.p{
+  letter-spacing: 1px;
+}
+
+.flecha { 
+  margin-top: 4rem;
+  text-align: center !important;
+  font-size: 1.5rem;
+  animation: anima 1s infinite alternate ease-in-out;
+}
+
+@keyframes anima {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-30px);
+  }
+}
+
+.main h1 {
+  font-size: 7rem;
+  white-space: nowrap; /* Evita quebra de linha */
+  overflow: hidden; /* Esconde o texto extra */
+  border-right: 4px solid black; /* Simula um cursor piscante */
+  animation: blinkCursor 0.8s infinite;
+}
+
+.leave{
+  text-decoration: none;
+  color: white;
+}
+
+@keyframes blinkCursor {
+  50% {
+    border-color: transparent;
+  }
+}
+
+.botao {
+  background: none !important;
+  color: #ffffff !important;
+  border: 2px solid #385cff !important;
+  padding: 8px 15px !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  border-radius: 5px !important;
+}
+
+.leave:hover{
+  color: #144bff;
+}
+
+.botao:hover {
+  background-color: #144bff !important;
+  color: white !important;
+  border: 2px solid #144bff !important;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.texto-logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+
+}
+.tabela {
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 150px;
+}
+
+.tabela th {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  border: 1px solid #000000;
+  text-align: center;
+}
+
+.tabela th:hover{
+  background-color: #144bff !important;
+  color: white !important;
+  border: 2px solid #144bff !important;
+}
+
+.tabela .attr{
+  background-color: #144bff;
+  color: white;
+}
+
+.tabela td {
+  border: 1px solid #dbdde2;
+  padding: 10px;
+  text-align: center;
+  background-color: #000000;
+  color: white;
+}
+
+main {
+  padding-top: 120px
+}
+
+.tabela tbody tr:nth-child(even) {
+  background-color: #e9e9e9; 
+}
+
+.tabela tbody tr:hover {
+  background-color: #d3d3d3; 
+
+}
+
+.tabela tbody:empty {
+  background-color: #e0e0e0;
+}
+
+
+.btn_tabela {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  color: #144bff;
+  border: 2px solid #144bff;
+  cursor: pointer;
+  font-size: 17px;
+  border-radius: 5px;
+  width: 18rem !important;
+  padding: 15px;
+  margin-top: -4rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border-radius: 2rem;
+  transition: 0.3s;
+}
+
+.btn_tabela:hover {
+  background-color: #144bff;
+  border: 2px solid #144bff;
+  color: #ffffff;
+  transition: 0.3s;
+} 
