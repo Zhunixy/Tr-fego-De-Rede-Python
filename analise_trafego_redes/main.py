@@ -8,7 +8,6 @@ pacotes_protocolo = []
 pacotes_IP_origem = []
 pacotes_IP_destino = []
 
-
 def analisar_pacotes():
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)

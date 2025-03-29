@@ -15,13 +15,13 @@
       <img src="{{url_for('static', filename='/images/SharkFlowLogo.png')}}" alt="LogoDaSharkFlow" class="logo">
       <span class="texto-logo">SharkFlow</span>
       </div>
-      <ul class="nav-links">
+      <ul class="nav-links text-align align-middle">
         <li><a href="#">Início</a></li>
         <li><a href="#">Sobre</a></li>  
         <li><a href="#">Documentação</a></li>
+        <li><a href="#">Gráficos</a></li>
       </ul>
       <button class="botao">Login</button>
-      <a class="leave" href="">Sair/<i class="fa-solid fa-right-from-bracket"></i></a>
     </nav>
   <main>
     <div class="main">
@@ -37,15 +37,15 @@
     <div style="overflow-x:auto;"></div>
       <table class="tabela">
         <tr>
-          <th>Hora/Data</th>
-          <th>IP_origem</th>
-          <th>IP_destino</th>
-          <th>Porta_origem</th>
-          <th>Porta_destino</th>
-          <th>MAC_origem</th>
-          <th>MAC_destino</th>
-          <th>Protocolo</th>
-          <th>Tamanho</th>
+          <th class="attr">Hora/Data</th>
+          <th class="attr">IP_origem</th>
+          <th class="attr">IP_destino</th>
+          <th class="attr">Porta_origem</th>
+          <th class="attr">Porta_destino</th>
+          <th class="attr">MAC_origem</th>
+          <th class="attr">MAC_destino</th>
+          <th class="attr">Protocolo</th>
+          <th class="attr">Tamanho</th>
         </tr>
         {% for item in tabela: %}
         <tr>
@@ -65,8 +65,8 @@
 
     <form action="#" method="post">
       <p><br><br><br><br></p>
-      <button class="btn_tabela" name="recarregar">recarregar tabela</button>
-      <button class="btn_tabela" value="encerrar tabela" name="encerrar">encerrar tabela</button>
+      <button class="btn_tabela" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
+      <button class="btn_tabela" value="encerrar tabela" name="encerrar">Encerrar tabela</button> <br> <br> <br> <br>
     </form>
   {% else %}
     <form action="#" method="post">
