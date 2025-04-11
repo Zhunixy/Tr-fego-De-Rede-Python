@@ -218,3 +218,52 @@ main {
   color: #ffffff;
   transition: 0.3s;
 } 
+
+.modelosecao {
+  background-color: #ffffff; 
+  color: #333333; 
+  padding: 20px;
+  margin: 20px;
+  border: 2px solid #a3a3a3;
+  border-radius: 8px;
+}
+.code-container {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 0px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.copy-button {
+  position: relative;
+  top: 5cap;
+  left: 95%;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.copy-button:hover {
+  background-color: #144bff;
+}
+
+pre {
+  margin: 0;
+  padding: 1em;
+  border-radius: 0 0 10px 10px;
+  overflow-x: auto;
+  background-color: transparent;
+  border: 2px solid #a3a3a3
+}
+
+pre code {
+  display: block !important;
+  background-color: transparent;
+}
+

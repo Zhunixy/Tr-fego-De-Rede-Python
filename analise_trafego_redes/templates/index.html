@@ -18,8 +18,8 @@
       <ul class="nav-links text-align align-middle">
         <li><a href="#">Início</a></li>
         <li><a href="#">Sobre</a></li>  
-        <li><a href="#">Documentação</a></li>
-        <li><a href="#">Gráficos</a></li>
+        <li><a href="#info-container">Documentação</a></li>
+        <li><a href="#bolas">Gráficos</a></li>
       </ul>
       <button class="botao">Login</button>
     </nav>
@@ -79,6 +79,116 @@
     {% endif %}
   {% endif %}
 </main>
+
+<section id="info-container">
+  <div class="modelosecao">
+      <h1>Função e propósitos do SharkFlow:</h1>
+      <p>SharkFlow é uma ferramenta de análise de rede, usada para capturar e examinar o tráfego de dados em tempo real. Ela permite observar comunicações como navegação na web, e-mails, transferências de arquivos, chamadas de voz, entre outros protocolos (TCP, UDP, HTTP, DNS).</p>
+  </div>
+
+  <div class="modelosecao">
+      <h1>Diagnóstico de problemas de rede:</h1>
+      <p>É amplamente utilizada para diagnosticar problemas como latência, perda de pacotes, congestionamento e falhas de desempenho na rede. Também ajuda a identificar atividades suspeitas, como invasões, malware e tráfego malicioso.</p>
+  </div>
+
+  <div class="modelosecao">
+      <h1>Segurança e monitoramento de atividades suspeitas:</h1>
+      <p>Além disso, o SharkFlow permite monitorar o uso da largura de banda, localizar gargalos e otimizar o desempenho da rede. É uma ferramenta valiosa tanto para profissionais quanto para estudantes que desejam entender melhor o funcionamento das redes.</p>
+  </div>
+
+  <div class="modelosecao">
+      <h1>Importância da ética e privacidade no uso:</h1>
+      <p>O uso da ferramenta deve ser feito com permissão e respeitando as leis de privacidade, já que ela pode capturar dados sensíveis, como logins e senhas, especialmente quando não há criptografia na transmissão.</p>
+  </div>
+</section>
+
+<section class="modelosecao">
+      <h1>Código:</h1>
+      <p> <ol>
+          <li>Criação de um novo loop de eventos com <code>asyncio</code>.</li>
+          <li>Verificação da existência do arquivo <code>captura.pcap</code>.</li>
+          <li>Leitura dos pacotes utilizando <code>pyshark.FileCapture</code>.</li>
+          <li>Extração de informações de cada pacote:
+              <ul>
+                  <li>Timestamp (hora da captura)</li>
+                  <li>IP de origem e destino</li>
+                  <li>Portas de origem e destino</li>
+                  <li>MAC de origem e destino</li>
+                  <li>Protocolo</li>
+                  <li>Tamanho do pacote</li>
+              </ul>
+          </li>
+          <li>Armazenamento dos dados em uma lista de dicionários.</li>
+          <li>Contabilização de estatísticas por:
+              <ul>
+                  <li>Protocolo</li>
+                  <li>IP de origem</li>
+                  <li>IP de destino</li>
+              </ul>
+          </li>
+          <li>Fechamento da captura e retorno dos dados coletados.</li>
+      </ol>
+  
+      <h2>Possíveis Expansões</h2>
+      <ul>
+          <li>Geração de relatórios em formatos como CSV ou JSON.</li>
+          <li>Criação de gráficos para visualização das estatísticas.</li>
+          <li>Desenvolvimento de uma interface web para exibição dos dados.</li>
+      </ul>
+  </section>
+<!-- codigo para analise -->
+<script src="script.js"></script>
+<div class="code-container">
+  <button class="copy-button">Copiar</button>
+  <pre><code class="language-javascript">
+      def analisar_pacotes():
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+    
+        nome_arquivo = 'captura.pcap'
+        caminho_arquivo = os.path.join(os.path.dirname(os.path.realpath(__file__)), nome_arquivo)
+    
+        if not os.path.exists(caminho_arquivo):
+            print(f"Erro: O arquivo '{nome_arquivo}' não foi encontrado no diretório '{caminho_arquivo}'.")
+            return 
+    
+        captura = pyshark.FileCapture(caminho_arquivo)
+    
+        total_pacotes = 0
+        pacotes_por_protocolo = {}
+        pacotes_por_ip_origem = {}
+        pacotes_por_ip_destino = {}
+    
+        for pacote in captura:
+            # Extração de informações do pacote
+            # ...
+            lista_analise.append({
+                "Hora": Timestamp, 
+                "IP_origem": Endereço_IP_Origem, 
+                "IP_destino": Endereço_IP_Destino, 
+                "Porta_origem": Porta_Origem, 
+                "Porta_destino": Porta_Destino, 
+                "MAC_origem": MAC_Origem, 
+                "MAC_destino": MAC_Destino, 
+                "Protocolo": Protocolo, 
+                "Tamanho": Tamanho_Pacote
+            })
+    
+        captura.close()
+    
+        # Impressão de estatísticas
+        # ...
+        return [lista_analise, pacotes_protocolo, pacotes_IP_origem, pacotes_IP_destino]
+  
+  </code></pre>
+</div>
+<section class="modelosecao">
+  <h1>Código:</h1>
+  <p><a href="https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git" target="_blank">https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git</a>
+      <p>Link do GitHub com todo o código para análise detalhada</p>
+  </section>
+  </body>
+
 <script src="../static/script.js"></script><script src="https://kit.fontawesome.com/951dd3b656.js" crossorigin="anonymous"></script>
 </body>
 </html>
