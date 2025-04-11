@@ -237,8 +237,8 @@ main {
 
 .copy-button {
   position: relative;
-  top: 5cap;
-  left: 95%;
+  top: 8cap;
+  left: 90%;
   background-color: #000000;
   color: #ffffff;
   border: none;
@@ -259,7 +259,13 @@ pre {
   border-radius: 0 0 10px 10px;
   overflow-x: auto;
   background-color: transparent;
-  border: 2px solid #a3a3a3
+  border: 2px solid #a3a3a3;
+  border-radius: 8px;
+}
+
+code {
+  font-family: Consolas, monospace;
+  color: #333;
 }
 
 pre code {
