@@ -218,14 +218,22 @@ main {
   color: #ffffff;
   transition: 0.3s;
 } 
+#info-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  gap: 10px; 
+}
 
 .modelosecao {
   background-color: #ffffff; 
   color: #333333; 
   padding: 20px;
-  margin: 20px;
+  margin: 0;
   border: 2px solid #a3a3a3;
   border-radius: 8px;
+  width: 48%;
+  box-sizing: border-box;
 }
 .code-container {
   width: 90%;
@@ -235,6 +243,10 @@ main {
   background-color: rgba(0, 0, 0, 0);
 }
 
+#codigo{
+  text-align: center;
+  list-style: none;
+}
 .copy-button {
   position: relative;
   top: 8cap;
@@ -273,3 +285,7 @@ pre code {
   background-color: transparent;
 }
 
+.icons{
+  font-size: 1rem;
+  color:#144bff;
+}

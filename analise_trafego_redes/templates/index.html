@@ -29,9 +29,6 @@
       <br><br>
     </div>
     <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
-    <center>
-    <i class="fa-solid fa-arrow-down flecha"></i>
-  </center>
     {% if tabela: %}
     
     <div style="overflow-x:auto;"></div>
@@ -80,62 +77,82 @@
   {% endif %}
 </main>
 
+<center>
+  <i class="fa-solid fa-arrow-down flecha"></i>
+</center>
+
+<p style="margin-top: 10rem;"></p>
+
+<h1 style="text-align: center;">Documentação</h1>
+<center>
+<hr style="margin-bottom: 5rem; width: 200px; border: 3px solid blue;">
+</center>
 <section id="info-container">
   <div class="modelosecao">
-      <h1>Função e propósitos do SharkFlow:</h1>
-      <p>SharkFlow é uma ferramenta de análise de rede, usada para capturar e examinar o tráfego de dados em tempo real. Ela permite observar comunicações como navegação na web, e-mails, transferências de arquivos, chamadas de voz, entre outros protocolos (TCP, UDP, HTTP, DNS).</p>
+    <i class="fa-solid fa-cubes icons"></i>
+    <h1>Função e propósitos do SharkFlow:</h1>
+    <p>SharkFlow é uma ferramenta de análise de rede, usada para capturar e examinar o tráfego de dados em tempo real. Ela permite observar comunicações como navegação na web, e-mails, transferências de arquivos, chamadas de voz, entre outros protocolos (TCP, UDP, HTTP, DNS).</p>
   </div>
 
   <div class="modelosecao">
-      <h1>Diagnóstico de problemas de rede:</h1>
-      <p>É amplamente utilizada para diagnosticar problemas como latência, perda de pacotes, congestionamento e falhas de desempenho na rede. Também ajuda a identificar atividades suspeitas, como invasões, malware e tráfego malicioso.</p>
+    <i class="fa-solid fa-cubes icons"></i>
+    <h1>Diagnóstico de problemas de rede:</h1>
+    <p>É amplamente utilizada para diagnosticar problemas como latência, perda de pacotes, congestionamento e falhas de desempenho na rede. Também ajuda a identificar atividades suspeitas, como invasões, malware e tráfego malicioso.</p>
   </div>
 
   <div class="modelosecao">
-      <h1>Segurança e monitoramento de atividades suspeitas:</h1>
-      <p>Além disso, o SharkFlow permite monitorar o uso da largura de banda, localizar gargalos e otimizar o desempenho da rede. É uma ferramenta valiosa tanto para profissionais quanto para estudantes que desejam entender melhor o funcionamento das redes.</p>
+    <i class="fa-solid fa-cubes icons"></i>
+    <h1>Segurança e monitoramento de atividades suspeitas:</h1>
+    <p>Além disso, o SharkFlow permite monitorar o uso da largura de banda, localizar gargalos e otimizar o desempenho da rede. É uma ferramenta valiosa tanto para profissionais quanto para estudantes que desejam entender melhor o funcionamento das redes.</p>
   </div>
 
   <div class="modelosecao">
-      <h1>Importância da ética e privacidade no uso:</h1>
-      <p>O uso da ferramenta deve ser feito com permissão e respeitando as leis de privacidade, já que ela pode capturar dados sensíveis, como logins e senhas, especialmente quando não há criptografia na transmissão.</p>
+    <i class="fa-solid fa-cubes icons"></i>
+    <h1>Importância da ética e privacidade no uso:</h1>
+    <p>O uso da ferramenta deve ser feito com permissão e respeitando as leis de privacidade, já que ela pode capturar dados sensíveis, como logins e senhas, especialmente quando não há criptografia na transmissão.</p>
   </div>
 </section>
 
-<section class="modelosecao">
-      <h1>Código:</h1>
-      <p> <ol>
-          <li>Criação de um novo loop de eventos com <code>asyncio</code>.</li>
-          <li>Verificação da existência do arquivo <code>captura.pcap</code>.</li>
-          <li>Leitura dos pacotes utilizando <code>pyshark.FileCapture</code>.</li>
-          <li>Extração de informações de cada pacote:
-              <ul>
-                  <li>Timestamp (hora da captura)</li>
-                  <li>IP de origem e destino</li>
-                  <li>Portas de origem e destino</li>
-                  <li>MAC de origem e destino</li>
-                  <li>Protocolo</li>
-                  <li>Tamanho do pacote</li>
-              </ul>
-          </li>
-          <li>Armazenamento dos dados em uma lista de dicionários.</li>
-          <li>Contabilização de estatísticas por:
-              <ul>
-                  <li>Protocolo</li>
-                  <li>IP de origem</li>
-                  <li>IP de destino</li>
-              </ul>
-          </li>
-          <li>Fechamento da captura e retorno dos dados coletados.</li>
-      </ol>
-  
-      <h2>Possíveis Expansões</h2>
-      <ul>
-          <li>Geração de relatórios em formatos como CSV ou JSON.</li>
-          <li>Criação de gráficos para visualização das estatísticas.</li>
-          <li>Desenvolvimento de uma interface web para exibição dos dados.</li>
-      </ul>
-  </section>
+<!-- Bloco separado para o código -->
+ <p style="margin-top: 7rem;"></p>
+ <center>
+<section style="list-style: none;" id="codigo" class="modelosecao">
+  <h1 style="text-align: center; margin-bottom: 15px;">Código:</h1>
+  <p>
+    <ol>
+      <li>Criação de um novo loop de eventos com <code>asyncio</code>.</li>
+      <li>Verificação da existência do arquivo <code>captura.pcap</code>.</li>
+      <li>Leitura dos pacotes utilizando <code>pyshark.FileCapture</code>.</li>
+      <li>Extração de informações de cada pacote:
+        <ul>
+          <li>Timestamp (hora da captura)</li>
+          <li>IP de origem e destino</li>
+          <li>Portas de origem e destino</li>
+          <li>MAC de origem e destino</li>
+          <li>Protocolo</li>
+          <li>Tamanho do pacote</li>
+        </ul>
+      </li>
+      <li>Armazenamento dos dados em uma lista de dicionários.</li>
+      <li>Contabilização de estatísticas por:
+        <ul>
+          <li>Protocolo</li>
+          <li>IP de origem</li>
+          <li>IP de destino</li>
+        </ul>
+      </li>
+      <li>Fechamento da captura e retorno dos dados coletados.</li>
+    </ol>
+  </p>
+
+  <h2 style="text-align: center;">Possíveis Expansões</h2>
+  <ul>
+    <li>Geração de relatórios em formatos como CSV ou JSON.</li>
+    <li>Criação de gráficos para visualização das estatísticas.</li>
+    <li>Desenvolvimento de uma interface web para exibição dos dados.</li>
+  </ul>
+</section>
+</center>
 <!-- codigo para analise -->
 <script src="script.js"></script>
 <div class="code-container">
@@ -190,13 +207,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
 
 </div>
+<center>
 <section class="modelosecao">
   <h1>Código:</h1>
   <p><a href="https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git" target="_blank">https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git</a>
       <p>Link do GitHub com todo o código para análise detalhada</p>
   </section>
+</center>
   </body>
 
+  <script src="https://kit.fontawesome.com/951dd3b656.js" crossorigin="anonymous"></script>
 <script src="../static/script.js"></script><script src="https://kit.fontawesome.com/951dd3b656.js" crossorigin="anonymous"></script>
 </body>
 </html>
