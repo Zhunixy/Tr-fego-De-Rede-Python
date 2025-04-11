@@ -143,6 +143,6 @@ def main():
 
                 return render_template("index.html", erro=1)
     else:
-        return render_template("index.html")
+        return render_template("index.html", text="bolas")
 
 app.run(debug=True)
