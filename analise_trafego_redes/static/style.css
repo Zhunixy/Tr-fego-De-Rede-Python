@@ -351,3 +351,24 @@ pre code {
 .btn-sair:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
+
+.modal-body input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.btn-modal {
+  background-color: #000;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
