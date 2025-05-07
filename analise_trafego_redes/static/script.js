@@ -28,5 +28,15 @@ document.addEventListener("DOMContentLoaded", function () {
               });
       });
   });
-  });
-  
+});
+
+$(document).ready(function() {
+  $('#btn-login').click(function(e) {
+    e.preventDefault()
+    modalLogin.style.display = 'flex'
+  })
+})
+
+sairModal.addEventListener('click', function() {
+  modalLogin.style.display = 'none';
+});
