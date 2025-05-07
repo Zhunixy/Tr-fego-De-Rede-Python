@@ -39,4 +39,12 @@ $(document).ready(function() {
 
 sairModal.addEventListener('click', function() {
   modalLogin.style.display = 'none';
+  mensagem.textContent = ''
+});
+
+btnLogin.addEventListener('click', function() {
+  mensagem.textContent = 'Não é possível efetuar o login'
+  setTimeout(() => {
+    mensagem.textContent = ''
+  }, 2000)
 });
