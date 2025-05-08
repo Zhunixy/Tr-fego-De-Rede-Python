@@ -35,16 +35,31 @@ $(document).ready(function() {
     e.preventDefault()
     modalLogin.style.display = 'flex'
   })
+
+  $('#sairModal').click(function() {
+    modalLogin.style.display = 'none';
+    mensagem.textContent = ''
+  });
+
+  $('#btnLogin').click(function() {
+    const email = document.getElementById('email').value
+    const senha = document.getElementById('senha').value
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      assync: true,
+      data: {'email': email, 'senha': senha},
+      url: '/login',
+      success: function(dados) {
+        console.log(dados)
+      }
+    })
+
+    // mensagem.textContent = 'Não é possível efetuar o login'
+    // setTimeout(() => {
+    //   mensagem.textContent = ''
+    // }, 2000)
+  });
 })
 
-sairModal.addEventListener('click', function() {
-  modalLogin.style.display = 'none';
-  mensagem.textContent = ''
-});
-
-btnLogin.addEventListener('click', function() {
-  mensagem.textContent = 'Não é possível efetuar o login'
-  setTimeout(() => {
-    mensagem.textContent = ''
-  }, 2000)
-});

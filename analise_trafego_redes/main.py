@@ -1,7 +1,8 @@
-from flask import Flask, url_for, render_template, request, jsonify
+from flask import Flask, url_for, render_template, request
 import os
 import pyshark
 import asyncio
+import json
 
 lista_analise = []
 pacotes_protocolo = []
@@ -144,5 +145,12 @@ def main():
                 return render_template("index.html", erro=1)
     else:
         return render_template("index.html", text="bolas")
+
+@app.route("/login", methods = ["GET", "POST"])
+def login():
+    email = request.form.get('email')
+    senha = request.form.get('senha')
+
+    return {'email': email, 'senha': senha}
 
 app.run(debug=True)
