@@ -52,14 +52,15 @@ $(document).ready(function() {
       data: {'email': email, 'senha': senha},
       url: '/login',
       success: function(dados) {
-        console.log(dados)
+        mensagem.textContent = dados.mensagem
+        setTimeout(() => {
+          mensagem.textContent = ''
+        }, 2500)
+        if (dados.type == 'success') {
+          $(location).attr('href', '/')
+        }
       }
     })
-
-    // mensagem.textContent = 'Não é possível efetuar o login'
-    // setTimeout(() => {
-    //   mensagem.textContent = ''
-    // }, 2000)
   });
 })
 

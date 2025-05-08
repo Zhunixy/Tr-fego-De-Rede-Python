@@ -2,7 +2,7 @@ from flask import Flask, url_for, render_template, request
 import os
 import pyshark
 import asyncio
-import json
+import usuario
 
 lista_analise = []
 pacotes_protocolo = []
@@ -151,6 +151,6 @@ def login():
     email = request.form.get('email')
     senha = request.form.get('senha')
 
-    return {'email': email, 'senha': senha}
+    return usuario.login(email, senha)
 
 app.run(debug=True)
