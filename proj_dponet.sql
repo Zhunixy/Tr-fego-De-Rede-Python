@@ -23,3 +23,5 @@ create table if not exists `proj_dponet`.`history` (
 primary key (`id`), -- Declaração da chave primária
 foreign key (`user_id`) references `user`(`id`) -- Declaração de chave estrangeira
 );
+
+INSERT INTO `USER` VALUEs (NULL, 'Teste', 'teste@teste', 'teste');
