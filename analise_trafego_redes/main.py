@@ -176,5 +176,4 @@ def logout():
     except:
         return {'type': 'error'}
 
-
 app.run(debug=True)

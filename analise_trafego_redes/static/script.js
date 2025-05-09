@@ -40,16 +40,25 @@ $(document).ready(function() {
     success: function(dados) {
       const btnLogin = document.getElementById('btn-login')
       const btnLogout = document.getElementById('btn-logout')
+      const btn2Login = document.getElementById('btn2-login')
+      const btnIniciar = document.getElementById('iniciar')
       if (dados.id != null){
         btnLogout.style.display = 'block'
+        btnIniciar.style.display = 'block'
       }
       else {
         btnLogin.style.display = 'block'
+        btn2Login.style.display = 'block'
       }
     }
   })
 
   $('#btn-login').click(function(e) {
+    e.preventDefault()
+    modalLogin.style.display = 'flex'
+  })
+
+  $('#btn2-login').click(function(e) {
     e.preventDefault()
     modalLogin.style.display = 'flex'
   })
@@ -69,12 +78,14 @@ $(document).ready(function() {
     })
   })
 
-  $('#sairModal').click(function() {
+  $('#sairModal').click(function(e) {
+    e.preventDefault()
     modalLogin.style.display = 'none'
     mensagem.textContent = ''
   });
 
-  $('#btnLogin').click(function() {
+  $('#btnLogin').click(function(e) {
+    e.preventDefault()
     const email = document.getElementById('email').value
     const senha = document.getElementById('senha').value
 
