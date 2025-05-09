@@ -41,10 +41,10 @@ $(document).ready(function() {
       const btnLogin = document.getElementById('btn-login')
       const btnLogout = document.getElementById('btn-logout')
       if (dados.id != null){
-        btnLogout.style.display = 'block' 
+        btnLogout.style.display = 'block'
       }
       else {
-        btnLogin.style.display = 'block' 
+        btnLogin.style.display = 'block'
       }
     }
   })
