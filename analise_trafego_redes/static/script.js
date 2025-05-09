@@ -31,13 +31,46 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 $(document).ready(function() {
+
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    assync: true,
+    url: '/validate',
+    success: function(dados) {
+      const btnLogin = document.getElementById('btn-login')
+      const btnLogout = document.getElementById('btn-logout')
+      if (dados.id != null){
+        btnLogout.style.display = 'block' 
+      }
+      else {
+        btnLogin.style.display = 'block' 
+      }
+    }
+  })
+
   $('#btn-login').click(function(e) {
     e.preventDefault()
     modalLogin.style.display = 'flex'
   })
 
+  $('#btn-logout').click(function(e) {
+    e.preventDefault()
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      assync: true,
+      url: '/logout',
+      success: function(dados) {
+        if (dados.type == 'success') {
+          $(location).attr('href', '/')
+        }
+      }
+    })
+  })
+
   $('#sairModal').click(function() {
-    modalLogin.style.display = 'none';
+    modalLogin.style.display = 'none'
     mensagem.textContent = ''
   });
 
@@ -61,6 +94,6 @@ $(document).ready(function() {
         }
       }
     })
-  });
+  })
 })
 

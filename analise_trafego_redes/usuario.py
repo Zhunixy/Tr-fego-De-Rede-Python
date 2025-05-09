@@ -13,12 +13,12 @@ def login(email, senha):
     try:
         sql = f'SELECT ID FROM `USER` WHERE EMAIL = "{email}" AND PASSWORD = "{senha}"'
         cursor.execute(sql)
-        sql = len(cursor.fetchall())
+        sql = cursor.fetchall()
 
-        if sql > 0:
-            return {'type': 'success', 'mensagem': 'Entrando...'}
+        if len(sql) > 0:
+            return {'type': 'success', 'mensagem': 'Entrando...', 'id': sql[0][0]}
         else:
-            return {'type': 'error', 'mensagem' : 'Emal ou senha incorreto(s)'}
+            return {'type': 'error', 'mensagem' : 'Email ou senha incorreto(s)'}
     except:
         return {'type': 'error', 'mensagem': 'Falha ao efetuar login'}
 

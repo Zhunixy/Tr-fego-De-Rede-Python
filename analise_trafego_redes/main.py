@@ -1,8 +1,9 @@
-from flask import Flask, url_for, render_template, request
+from flask import Flask, url_for, render_template, request, session
 import os
 import pyshark
 import asyncio
 import usuario
+from flask_session import Session
 
 lista_analise = []
 pacotes_protocolo = []
@@ -128,6 +129,10 @@ def analisar_pacotes():
 
 app = Flask(__name__)
 
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
 @app.route("/", methods = ["GET", "POST"])
 def main():
     if request.method == "POST":
@@ -151,6 +156,25 @@ def login():
     email = request.form.get('email')
     senha = request.form.get('senha')
 
-    return usuario.login(email, senha)
+    dados = usuario.login(email, senha)
+    if dados['type'] != 'error':
+        session['id'] = dados['id']
+    else:
+        session['id'] = None
+
+    return dados
+
+@app.route("/validate", methods = ["GET", "POST"])
+def validate():
+    return {'id': session['id']}
+
+@app.route("/logout", methods = ["GET", "POST"])
+def logout():
+    try:
+        session['id'] = None
+        return {'type': 'success'}
+    except:
+        return {'type': 'error'}
+
 
 app.run(debug=True)
