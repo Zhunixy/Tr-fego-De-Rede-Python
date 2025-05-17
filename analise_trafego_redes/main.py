@@ -99,27 +99,19 @@ def analisar_pacotes():
     captura.close()
 
     # Exibe estatísticas gerais
-    print("\nEstatísticas Gerais:")
-    print(f"Total de Pacotes: {total_pacotes}")
-    print("Pacotes por Protocolo:")
     for protocolo, quantidade in pacotes_por_protocolo.items():
-        print(f"  {protocolo}: {quantidade}")
         pacotes_protocolo.append({
             "protocolo": protocolo,
             "quantidade": quantidade
         })
 
-    print("Pacotes por IP de Origem:")
     for ip, quantidade in pacotes_por_ip_origem.items():
-        print(f"  {ip}: {quantidade}")
         pacotes_IP_origem.append({
             "ip": ip,
             "quantidade": quantidade
         })
 
-    print("Pacotes por IP de Destino:")
     for ip, quantidade in pacotes_por_ip_destino.items():
-        print(f"  {ip}: {quantidade}")
         pacotes_IP_destino.append({
             "ip": ip,
             "quantidade": quantidade
@@ -134,7 +126,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 @app.route("/", methods = ["GET", "POST"])
-def main():
+def main():    
     if request.method == "POST":
         if request.form.get('encerrar') == 'encerrar tabela':
             return render_template("index.html")
@@ -146,10 +138,9 @@ def main():
                 IP_destino_geral = analisar_pacotes()[3]
                 return render_template("index.html", tabela=tabela, protocolos_geral=protocolos_geral, IP_origem_geral=IP_origem_geral, IP_destino_geral=IP_destino_geral)
             except:
-
                 return render_template("index.html", erro=1)
     else:
-        return render_template("index.html", text="bolas")
+        return render_template("index.html")
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
@@ -166,7 +157,9 @@ def login():
 
 @app.route("/validate", methods = ["GET", "POST"])
 def validate():
-    return {'id': session['id']}
+        if len(session) < 1:
+            session['id'] = None
+        return {'id': session['id']}
 
 @app.route("/logout", methods = ["GET", "POST"])
 def logout():

@@ -25,13 +25,19 @@
       <button class="botao" id="btn-logout" style="display: none;">Logout</button>
     </nav>
   <main>
+    {% if not tabela: %}
     <div class="main">
       <h1 id="typing">Bem Vindo Ao <br> <br> <span>Sistema</span></h1> <br>
       <br><br>
     </div>
     <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
+    {% endif %}
     {% if tabela: %}
-    
+    <div class="table-title">
+      <h1>Tabelinha do Kauan</h1> <br>
+      <br><br>
+    </div>
+    <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
     <div style="overflow-x:auto;"></div>
       <table class="tabela">
         <tr>
