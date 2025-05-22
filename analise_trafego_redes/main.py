@@ -120,21 +120,24 @@ def analisar_pacotes():
     return [lista_analise, pacotes_protocolo, pacotes_IP_origem, pacotes_IP_destino]
 
 app = Flask(__name__)
+tab = 0
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 @app.route("/", methods = ["GET", "POST"])
-def main():    
-    tab = 0
-
+def main():  
+    global tab
     try:
         if request.method == "POST":
-            if request.form.get('alternar') == 'proximo':
-                tab += 1
-            elif request.form.get('alternar') == 'anterior':
-                tab -= 1 
+            
+            if request.form.get('alternar') == 'anterior':
+                tab -= 1
+            elif request.form.get('alternar') == 'proximo':
+                tab += 1           
+
+            tab = tab% 4
 
             if request.form.get('encerrar') == 'encerrar tabela':
                 return render_template("index.html")
@@ -147,7 +150,7 @@ def main():
                 lista_1 = []
                 lista_2 = []
     
-                match tab:
+                match int(tab):
                     case 0:
                         return render_template("index.html", analise=True, tabela=tabela)
                     case 1:
@@ -198,4 +201,5 @@ def logout():
     except:
         return {'type': 'error'}
 
-app.run(debug=True)
+if __name__== "__main__":
+    app.run(debug=True)

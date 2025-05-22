@@ -20,7 +20,6 @@
         <li><a href="#">Início</a></li>
         <li><a href="#">Sobre</a></li>  
         <li><a href="#info-container">Documentação</a></li>
-        <li><a href="#bolas">Gráficos</a></li>
       </ul>
       <button class="botao" id="btn-login" style="display: none;">Login</button>
       <button class="botao" id="btn-logout" style="display: none;">Logout</button>
@@ -79,8 +78,8 @@
       </script>
     {% endif %}  
     <form action="#" method="post">
-      <button class="alternar_tabela" value="anterior" name="alternar"><</button>
-      <button class="alternar_tabela" value="proximo" name="alternar">></button>
+      <button id="anterior" value="anterior" name="alternar"><</button>
+      <button id="proximo" value="proximo" name="alternar">></button>
       <p><br><br><br><br></p>
       <button class="btn_tabela" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
       <button class="btn_tabela" value="encerrar tabela" name="encerrar">Encerrar tabela</button> <br> <br> <br> <br>

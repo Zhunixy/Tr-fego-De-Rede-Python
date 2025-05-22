@@ -206,30 +206,6 @@ main {
   background-color: #e0e0e0;
 }
 
-.alternar_tabela {
-  display: block;
-  margin: 0 auto;
-  background: none;
-  background-color: #d3d3d3;
-  border: 2px solid #144bff;
-  cursor: pointer;
-  font-size: 17px;
-  border-radius: 2rem;
-  width: 2rem !important;
-  height: 8rem !important;
-  padding: 15px;
-  margin-top: -4rem;
-  letter-spacing: 1px;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.alternar_tabela {
-  background-color: #144bff;
-  border: 2px solid #144bff;
-  color: #ffffff;
-  transition: 0.3s;
-}
 
 .btn_tabela {
   display: block;
