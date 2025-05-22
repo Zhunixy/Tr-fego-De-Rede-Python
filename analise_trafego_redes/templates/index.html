@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SharkFlow</title>   <!-- Title = titulo da página, e logo abaixo o link, que serve para linkar o documento css com o html.   -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -25,56 +26,68 @@
       <button class="botao" id="btn-logout" style="display: none;">Logout</button>
     </nav>
   <main>
-    {% if not tabela: %}
+    {% if not analise: %}
     <div class="main">
       <h1 id="typing">Bem Vindo Ao <br> <br> <span>Sistema</span></h1> <br>
       <br><br>
     </div>
     <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
     {% endif %}
-    {% if tabela: %}
+    {% if analise: %}
     <div class="table-title">
       <h1>Tabelinha do Kauan</h1> <br>
       <br><br>
     </div>
     <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
-    <div style="overflow-x:auto;"></div>
-      <table class="tabela">
-        <tr>
-          <th class="attr">Hora/Data</th>
-          <th class="attr">IP_origem</th>
-          <th class="attr">IP_destino</th>
-          <th class="attr">Porta_origem</th>
-          <th class="attr">Porta_destino</th>
-          <th class="attr">MAC_origem</th>
-          <th class="attr">MAC_destino</th>
-          <th class="attr">Protocolo</th>
-          <th class="attr">Tamanho</th>
-        </tr>
-        {% for item in tabela: %}
-        <tr>
-          <th>{{item.Hora}}</th>
-          <th>{{item.IP_origem}}</th>
-          <th>{{item.IP_destino}}</th>
-          <th>{{item.Porta_origem}}</th>
-          <th>{{item.Porta_destino}}</th>
-          <th>{{item.MAC_origem}}</th>
-          <th>{{item.MAC_destino}}</th>
-          <th>{{item.Protocolo}}</th>
-          <th>{{item.Tamanho}}</th>
-        </tr>
-        {% endfor %}
-      </table>
-    </div>
+    {% if tabela: %}
 
+      <div style="overflow-x:auto;"></div>
+        <table class="tabela">
+          <tr>
+            <th class="attr">Hora/Data</th>
+            <th class="attr">IP_origem</th>
+            <th class="attr">IP_destino</th>
+            <th class="attr">Porta_origem</th>
+            <th class="attr">Porta_destino</th>
+            <th class="attr">MAC_origem</th>
+            <th class="attr">MAC_destino</th>
+            <th class="attr">Protocolo</th>
+            <th class="attr">Tamanho</th>
+          </tr>
+          {% for item in tabela: %}
+          <tr>
+            <th>{{item.Hora}}</th>
+            <th>{{item.IP_origem}}</th>
+            <th>{{item.IP_destino}}</th>
+            <th>{{item.Porta_origem}}</th>
+            <th>{{item.Porta_destino}}</th>
+            <th>{{item.MAC_origem}}</th>
+            <th>{{item.MAC_destino}}</th>
+            <th>{{item.Protocolo}}</th>
+            <th>{{item.Tamanho}}</th>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endif %}  
+    {% if lista_1 and lista_2: %}
+      <canvas id="grafico"></canvas>
+
+      <script>
+        const labels = {{ lista_1 | tojson}}
+        const valores = {{ lista_2 | tojson}}
+      </script>
+    {% endif %}  
     <form action="#" method="post">
+      <button class="alternar_tabela" value="anterior" name="alternar"><</button>
+      <button class="alternar_tabela" value="proximo" name="alternar">></button>
       <p><br><br><br><br></p>
       <button class="btn_tabela" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
       <button class="btn_tabela" value="encerrar tabela" name="encerrar">Encerrar tabela</button> <br> <br> <br> <br>
     </form>
   {% else %}
     {% if erro: %}
-      <p class="erro" style="text-align: center; letter-spacing: 5px;"> ocorreu um erro : </p>
+      <p class="erro" style="text-align: center; letter-spacing: 5px;">{{erro}}</p>
     {% else %}
       <form action="#" method="post">
         <p><br><br><br><br></p>

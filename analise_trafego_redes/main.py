@@ -5,12 +5,12 @@ import asyncio
 import usuario
 from flask_session import Session
 
-lista_analise = []
-pacotes_protocolo = []
-pacotes_IP_origem = []
-pacotes_IP_destino = []
-
 def analisar_pacotes():
+    lista_analise = []
+    pacotes_protocolo = []
+    pacotes_IP_origem = []
+    pacotes_IP_destino = []
+
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
 
@@ -127,20 +127,49 @@ Session(app)
 
 @app.route("/", methods = ["GET", "POST"])
 def main():    
-    if request.method == "POST":
-        if request.form.get('encerrar') == 'encerrar tabela':
-            return render_template("index.html")
-        else:
-            try:
+    tab = 0
+
+    try:
+        if request.method == "POST":
+            if request.form.get('alternar') == 'proximo':
+                tab += 1
+            elif request.form.get('alternar') == 'anterior':
+                tab -= 1 
+
+            if request.form.get('encerrar') == 'encerrar tabela':
+                return render_template("index.html")
+            else:
                 tabela = analisar_pacotes()[0]
                 protocolos_geral = analisar_pacotes()[1]
                 IP_origem_geral = analisar_pacotes()[2]
                 IP_destino_geral = analisar_pacotes()[3]
-                return render_template("index.html", tabela=tabela, protocolos_geral=protocolos_geral, IP_origem_geral=IP_origem_geral, IP_destino_geral=IP_destino_geral)
-            except:
-                return render_template("index.html", erro=1)
-    else:
-        return render_template("index.html")
+
+                lista_1 = []
+                lista_2 = []
+    
+                match tab:
+                    case 0:
+                        return render_template("index.html", analise=True, tabela=tabela)
+                    case 1:
+                        for i in protocolos_geral:
+                            lista_1.append(i["protocolo"])
+                            lista_2.append(i["quantidade"])                                
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2)
+                    case 2:
+                        for i in IP_origem_geral:
+                            lista_1.append(i["ip"])
+                            lista_2.append(i["quantidade"])                                
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2)
+                    case 3:
+                        for i in IP_destino_geral:
+                            lista_1.append(i["ip"])
+                            lista_2.append(i["quantidade"])                                
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2)
+                return render_template("index.html")
+        else:
+            return render_template("index.html")
+    except NameError as erro:
+        return render_template("index.html", erro=erro)
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
