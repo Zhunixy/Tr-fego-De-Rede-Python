@@ -232,6 +232,13 @@ main {
   transition: 0.3s;
 } 
 
+#grafico {
+  display: block;
+  margin: auto;
+  width: 60% !important;
+  height: 60% !important;
+}
+
 #div_alternar{
   position: fixed;
   top: 50%;
