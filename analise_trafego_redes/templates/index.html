@@ -33,53 +33,59 @@
     <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
     {% endif %}
     {% if analise: %}
-    <div class="table-title">
-      <h1>Tabelinha do Kauan</h1> <br>
-      <br><br>
-    </div>
-    <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
-    {% if tabela: %}
+      {% if tabela: %}
+        <div class="table-title">
+          <h1>Tabelinha do Kauan</h1> <br>
+          <br><br>
+        </div>
+        <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
+        <div id="analise" style="overflow-x:auto;"></div>
+          <table class="tabela">
+            <tr>
+              <th class="attr">Hora/Data</th>
+              <th class="attr">IP_origem</th>
+              <th class="attr">IP_destino</th>
+              <th class="attr">Porta_origem</th>
+              <th class="attr">Porta_destino</th>
+              <th class="attr">MAC_origem</th>
+              <th class="attr">MAC_destino</th>
+              <th class="attr">Protocolo</th>
+              <th class="attr">Tamanho</th>
+            </tr>
+            {% for item in tabela: %}
+            <tr>
+              <th>{{item.Hora}}</th>
+              <th>{{item.IP_origem}}</th>
+              <th>{{item.IP_destino}}</th>
+              <th>{{item.Porta_origem}}</th>
+              <th>{{item.Porta_destino}}</th>
+              <th>{{item.MAC_origem}}</th>
+              <th>{{item.MAC_destino}}</th>
+              <th>{{item.Protocolo}}</th>
+              <th>{{item.Tamanho}}</th>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+      {% endif %}  
+      {% if lista_1 and lista_2: %}
+        <div class="table-title">
+          <h1>grafico de {{grafico}}</h1> <br>
+          <br><br>
+        </div>
+        <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
+        <canvas id="grafico"></canvas>
 
-      <div style="overflow-x:auto;"></div>
-        <table class="tabela">
-          <tr>
-            <th class="attr">Hora/Data</th>
-            <th class="attr">IP_origem</th>
-            <th class="attr">IP_destino</th>
-            <th class="attr">Porta_origem</th>
-            <th class="attr">Porta_destino</th>
-            <th class="attr">MAC_origem</th>
-            <th class="attr">MAC_destino</th>
-            <th class="attr">Protocolo</th>
-            <th class="attr">Tamanho</th>
-          </tr>
-          {% for item in tabela: %}
-          <tr>
-            <th>{{item.Hora}}</th>
-            <th>{{item.IP_origem}}</th>
-            <th>{{item.IP_destino}}</th>
-            <th>{{item.Porta_origem}}</th>
-            <th>{{item.Porta_destino}}</th>
-            <th>{{item.MAC_origem}}</th>
-            <th>{{item.MAC_destino}}</th>
-            <th>{{item.Protocolo}}</th>
-            <th>{{item.Tamanho}}</th>
-          </tr>
-          {% endfor %}
-        </table>
-      </div>
-    {% endif %}  
-    {% if lista_1 and lista_2: %}
-      <canvas id="grafico"></canvas>
-
-      <script>
-        const labels = {{ lista_1 | tojson}}
-        const valores = {{ lista_2 | tojson}}
-      </script>
-    {% endif %}  
+        <script>
+          const labels = {{ lista_1 | tojson}}
+          const valores = {{ lista_2 | tojson}}
+        </script>
+      {% endif %}  
     <form action="#" method="post">
-      <button id="anterior" value="anterior" name="alternar"><</button>
-      <button id="proximo" value="proximo" name="alternar">></button>
+      <div id="div_alternar">
+        <button class="btn_alternar" id="anterior" value="anterior" name="alternar"><</button>
+        <button class="btn_alternar" id="proximo" value="proximo" name="alternar">></button>
+      </div>
       <p><br><br><br><br></p>
       <button class="btn_tabela" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
       <button class="btn_tabela" value="encerrar tabela" name="encerrar">Encerrar tabela</button> <br> <br> <br> <br>

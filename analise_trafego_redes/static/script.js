@@ -2,10 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const text = "Bem Vindo Ao Sistema ";
     const typingElement = document.getElementById("typing");
     const buttons = document.querySelectorAll('.copy-button');
-  
+    
     let index = 0;
     typingElement.innerHTML = "";
-  
+    
+    // efeito de digitação
     function typeEffect() {
       if (index < text.length) {
         typingElement.innerHTML += text.charAt(index);
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     typeEffect();
 
+    // botão copiar codigo
     buttons.forEach(button => {
       button.addEventListener('click', () => {
           const code = button.nextElementSibling.innerText;
@@ -30,12 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('grafico').getContext('2d');
+  
     let grafico;
 
-
-
+    // gerar o grafico
     if (!grafico) {
     const grafico = new Chart(ctx, {
         type: 'bar',

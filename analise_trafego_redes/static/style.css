@@ -39,7 +39,7 @@ body{
 .nav-links li { 
   display: inline!important;
 }
-/* O Nav-links com o "a" na frente, engloba todos os links dentro que estão dentro de um "li" da classe "nav-links" */
+
 .nav-links a { 
   text-decoration: none !important;
   color: white !important;
@@ -78,8 +78,8 @@ body{
 
 .table-title h1 {
   font-size: 7rem;
-  white-space: nowrap; /* Evita quebra de linha */
-  overflow: hidden; /* Esconde o texto extra */
+  white-space: nowrap;
+  overflow: hidden; 
 }
 
 .p{
@@ -104,9 +104,9 @@ body{
 
 .main h1 {
   font-size: 7rem;
-  white-space: nowrap; /* Evita quebra de linha */
-  overflow: hidden; /* Esconde o texto extra */
-  border-right: 4px solid black; /* Simula um cursor piscante */
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 4px solid black;
   animation: blinkCursor 0.8s infinite;
 }
 
@@ -231,6 +231,51 @@ main {
   color: #ffffff;
   transition: 0.3s;
 } 
+
+#div_alternar{
+  position: fixed;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.btn_alternar {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 auto;
+  background: none;
+  color: #144bff;
+  border: 2px solid #144bff;
+  cursor: pointer;
+  font-size: 64px;
+  width: 4rem !important;
+  height: 12rem !important;
+  border-radius: 2rem;
+  transition: 0.3s;
+  pointer-events: auto;
+
+}
+
+.btn_alternar:hover {
+  background-color: #144bff;
+  border: 2px solid #144bff;
+  color: #ffffff;
+  transition: 0.3s;
+} 
+#anterior {
+  position: relative;
+  right: 23%;  
+}
+#proximo {
+  position: relative;
+  left: 23%;
+}
+
+
 #info-container {
   display: flex;
   flex-wrap: wrap; 

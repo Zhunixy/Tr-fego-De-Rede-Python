@@ -137,9 +137,10 @@ def main():
             elif request.form.get('alternar') == 'proximo':
                 tab += 1           
 
-            tab = tab% 4
+            tab = tab % 4
 
             if request.form.get('encerrar') == 'encerrar tabela':
+                tab = 0
                 return render_template("index.html")
             else:
                 tabela = analisar_pacotes()[0]
@@ -157,17 +158,17 @@ def main():
                         for i in protocolos_geral:
                             lista_1.append(i["protocolo"])
                             lista_2.append(i["quantidade"])                                
-                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2)
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="protocolos")
                     case 2:
                         for i in IP_origem_geral:
                             lista_1.append(i["ip"])
                             lista_2.append(i["quantidade"])                                
-                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2)
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de origem")
                     case 3:
                         for i in IP_destino_geral:
                             lista_1.append(i["ip"])
                             lista_2.append(i["quantidade"])                                
-                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2)
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de destino")
                 return render_template("index.html")
         else:
             return render_template("index.html")
