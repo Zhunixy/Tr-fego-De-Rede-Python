@@ -70,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 $(document).ready(function() {
 
+  let modal = 'login'
+
   $.ajax({
     type: 'POST',
     dataType: 'json',
@@ -119,30 +121,56 @@ $(document).ready(function() {
   $('#sairModal').click(function(e) {
     e.preventDefault()
     modalLogin.style.display = 'none'
-    mensagem.textContent = ''
   });
+
+  $('#linkCadastrar').click(function(e) {
+    e.preventDefault()
+    const titulo = document.getElementById('modal-titulo')
+    const botao = document.getElementById('btnLogin')
+    const link = document.getElementById('linkCadastrar')
+
+    if (modal == 'login') {
+      modal = 'cadastrar'
+      titulo.textContent = 'Fazer cadastro'
+      botao.textContent = 'Cadastrar-se'
+      link.textContent = 'Fazer login'
+    } else if (modal == 'cadastrar') {
+      modal = 'login'
+      titulo.textContent = 'Login'
+      botao.textContent = 'Entrar'
+      link.textContent = 'Cadastrar-se'
+    }
+  })
 
   $('#btnLogin').click(function(e) {
     e.preventDefault()
     const email = document.getElementById('email').value
     const senha = document.getElementById('senha').value
 
-    $.ajax({
-      type: 'POST',
-      dataType: 'json',
-      assync: true,
-      data: {'email': email, 'senha': senha},
-      url: '/login',
-      success: function(dados) {
-        mensagem.textContent = dados.mensagem
-        setTimeout(() => {
-          mensagem.textContent = ''
-        }, 2500)
-        if (dados.type == 'success') {
-          $(location).attr('href', '/')
+    if (modal == 'login') {
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        assync: true,
+        data: {'email': email, 'senha': senha},
+        url: '/login',
+        success: function(dados) {
+          $('.form-login').append(`
+            <div class="spam-login">
+              <p>${dados.mensagem}</p>
+            </div>  
+          `)
+          setTimeout(() => {
+            $('.spam-login').remove()
+          }, 2500)
+          if (dados.type == 'success') {
+            $(location).attr('href', '/')
+          }
         }
-      }
-    })
+      })
+    } else if (modal == 'cadastrar') {
+      pass
+    }
   })
 })
 

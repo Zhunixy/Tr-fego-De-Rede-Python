@@ -18,7 +18,7 @@ def login(email, senha):
         if len(sql) > 0:
             return {'type': 'success', 'mensagem': 'Entrando...', 'id': sql[0][0]}
         else:
-            return {'type': 'error', 'mensagem' : 'Email ou senha incorreto(s)'}
+            return {'type': 'error', 'mensagem' : 'E-mail ou senha incorreto(s)'}
     except:
         return {'type': 'error', 'mensagem': 'Falha ao efetuar login'}
 
