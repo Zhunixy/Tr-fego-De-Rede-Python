@@ -128,24 +128,32 @@ $(document).ready(function() {
     const titulo = document.getElementById('modal-titulo')
     const botao = document.getElementById('btnLogin')
     const link = document.getElementById('linkCadastrar')
+    const inNome = document.getElementById('inputNome')
+    const inCnpj = document.getElementById('inputCnpj')
 
     if (modal == 'login') {
       modal = 'cadastrar'
       titulo.textContent = 'Fazer cadastro'
       botao.textContent = 'Cadastrar-se'
       link.textContent = 'Fazer login'
+      inNome.style.display = 'block'
+      inCnpj.style.display = 'block'
     } else if (modal == 'cadastrar') {
       modal = 'login'
       titulo.textContent = 'Login'
       botao.textContent = 'Entrar'
       link.textContent = 'Cadastrar-se'
+      inNome.style.display = 'none'
+      inCnpj.style.display = 'none'
     }
   })
 
   $('#btnLogin').click(function(e) {
     e.preventDefault()
-    const email = document.getElementById('email').value
-    const senha = document.getElementById('senha').value
+    const nome = document.getElementById('inputNome').value
+    const cnpj = document.getElementById('inputCnpj').value
+    const email = document.getElementById('inputEmail').value
+    const senha = document.getElementById('inputSenha').value
 
     if (modal == 'login') {
       $.ajax({
