@@ -26,4 +26,4 @@ primary key (`id`), -- Declaração da chave primária
 foreign key (`user_id`) references `user`(`id`) -- Declaração de chave estrangeira
 );
 
-INSERT INTO `USER` VALUEs (NULL, 'Teste', 99999999999, 99999999999, 'teste@teste', 'teste');
+INSERT INTO `USER` VALUES (NULL, 'Teste', '99999999999', '99999999999', 'teste@teste', MD5('teste'));

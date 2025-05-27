@@ -152,33 +152,61 @@ $(document).ready(function() {
     e.preventDefault()
     const nome = document.getElementById('inputNome').value
     const cnpj = document.getElementById('inputCnpj').value
+    const telefone = document.getElementById('inputTelefone').value
     const email = document.getElementById('inputEmail').value
     const senha = document.getElementById('inputSenha').value
 
     if (modal == 'login') {
-      $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        assync: true,
-        data: {'email': email, 'senha': senha},
-        url: '/login',
-        success: function(dados) {
-          $('.form-login').append(`
-            <div class="spam-login">
-              <p>${dados.mensagem}</p>
-            </div>  
-          `)
-          setTimeout(() => {
-            $('.spam-login').remove()
-          }, 2500)
-          if (dados.type == 'success') {
-            $(location).attr('href', '/')
-          }
-        }
-      })
+      login(email, senha)
     } else if (modal == 'cadastrar') {
-      pass
+      cadastro(nome, cnpj, telefone, email, senha)
     }
   })
 })
+
+function login(email, senha) {
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    assync: true,
+    data: {'email': email, 'senha': senha},
+    url: '/login',
+    success: function(dados) {
+      $('.form-login').append(`
+        <div class="spam-login">
+          <p>${dados.mensagem}</p>
+        </div>  
+      `)
+      setTimeout(() => {
+        $('.spam-login').remove()
+      }, 2500)
+      if (dados.type == 'success') {
+        $(location).attr('href', '/')
+      }
+    }
+  })
+}
+
+function cadastro(nome, cnpj, telefone, email, senha) {
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    assync: true,
+    data: {'nome': nome, 'cnpj': cnpj, 'telefone': telefone, 'email': email, 'senha': senha},
+    url: '/cadastro',
+    success: function(dados) {
+      $('.form-login').append(`
+        <div class="spam-login">
+          <p>${dados.mensagem}</p>
+        </div>  
+      `)
+      setTimeout(() => {
+        $('.spam-login').remove()
+        if (dados.type == 'success') {
+          login(email, senha)
+        }
+      }, 2500)
+    }
+  })
+}
 

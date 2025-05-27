@@ -188,6 +188,19 @@ def login():
 
     return dados
 
+@app.route("/cadastro", methods = ["GET", "POST"])
+def cadastro():
+    nome = request.form.get('nome')
+    cnpj = request.form.get('cnpj')
+    telefone = request.form.get('telefone')
+    email = request.form.get('email')
+    senha = request.form.get('senha')
+
+    if nome != '' and cnpj != '' and telefone != '' and email != '' and senha != '':
+        return usuario.cadastro(nome, cnpj, telefone, email, senha)
+    else:
+        return {'type': 'error', 'mensagem': 'Campo(s) obrigatório(s) não preenchido(s)'}
+
 @app.route("/validate", methods = ["GET", "POST"])
 def validate():
         if len(session) < 1:
