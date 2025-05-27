@@ -480,3 +480,9 @@ pre code {
       transform: translateY(0);
   }
 }
+
+.input-group {
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+}
