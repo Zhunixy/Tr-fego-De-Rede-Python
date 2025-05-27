@@ -162,6 +162,27 @@ $(document).ready(function() {
       cadastro(nome, cnpj, telefone, email, senha)
     }
   })
+
+  $('#inputTelefone').keydown(function(e) {
+    const texto = $('#inputTelefone').val()
+
+    if (texto.length == 2 && e.key != 'Backspace') {
+      $('#inputTelefone').val(texto + ' ')
+    }
+    else if (texto.length == 8 && e.key != 'Backspace') {
+      $('#inputTelefone').val(texto + '-')
+    }
+    else if (texto.length == 13 && e.key != 'Backspace') {
+      e.preventDefault()
+    }
+
+    // if (texto.length == 2) {
+    //   $('#inputTelefone').val(texto + e.key)
+    // }
+    // else {
+    //   $('#inputTelefone').val(texto + e.key)
+    // }
+  })
 })
 
 function login(email, senha) {
