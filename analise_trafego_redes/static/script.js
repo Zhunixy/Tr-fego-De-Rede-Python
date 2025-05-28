@@ -121,31 +121,18 @@ $(document).ready(function() {
   $('#sairModal').click(function(e) {
     e.preventDefault()
     modalLogin.style.display = 'none'
+    $('#inputNome').val('')
+    $('#inputCnpj').val('')
+    $('#inputTelefone').val('')
+    $('#inputEmail').val('')
+    $('#inputSenha').val('')
+    modal = 'cadastrar'
+    modal = trocaModal(modal)
   });
 
   $('#linkCadastrar').click(function(e) {
     e.preventDefault()
-    const titulo = document.getElementById('modal-titulo')
-    const botao = document.getElementById('btnLogin')
-    const link = document.getElementById('linkCadastrar')
-    const inNome = document.getElementById('inputNome')
-    const inGroup = document.getElementById('inputGroup')
-
-    if (modal == 'login') {
-      modal = 'cadastrar'
-      titulo.textContent = 'Fazer cadastro'
-      botao.textContent = 'Cadastrar-se'
-      link.textContent = 'Deseja fazer login?'
-      inNome.style.display = 'block'
-      inGroup.style.display = 'flex'
-    } else if (modal == 'cadastrar') {
-      modal = 'login'
-      titulo.textContent = 'Login'
-      botao.textContent = 'Entrar'
-      link.textContent = 'Deseja fazer cadastro?'
-      inNome.style.display = 'none'
-      inGroup.style.display = 'none'
-    }
+    modal = trocaModal(modal)
   })
 
   $('#btnLogin').click(function(e) {
@@ -163,25 +150,29 @@ $(document).ready(function() {
     }
   })
 
+  $('#inputCnpj').keydown(function(e) {
+    if (!Number(e.key) && e.key != 'Backspace') {
+      e.preventDefault()
+    }
+  })
+
   $('#inputTelefone').keydown(function(e) {
     const texto = $('#inputTelefone').val()
 
-    if (texto.length == 2 && e.key != 'Backspace') {
-      $('#inputTelefone').val(texto + ' ')
-    }
-    else if (texto.length == 8 && e.key != 'Backspace') {
-      $('#inputTelefone').val(texto + '-')
-    }
-    else if (texto.length == 13 && e.key != 'Backspace') {
+    if (e.key != 'Backspace') {
+      if (!Number(e.key)) {
       e.preventDefault()
+      }
+      else if (texto.length == 2) {
+        $('#inputTelefone').val(texto + ' ')
+      }
+      else if (texto.length == 8) {
+        $('#inputTelefone').val(texto + '-')
+      }
+      else if (texto.length == 13) {
+        e.preventDefault()
+      } 
     }
-
-    // if (texto.length == 2) {
-    //   $('#inputTelefone').val(texto + e.key)
-    // }
-    // else {
-    //   $('#inputTelefone').val(texto + e.key)
-    // }
   })
 })
 
@@ -231,3 +222,28 @@ function cadastro(nome, cnpj, telefone, email, senha) {
   })
 }
 
+function trocaModal(modal) {
+  const titulo = document.getElementById('modal-titulo')
+  const botao = document.getElementById('btnLogin')
+  const link = document.getElementById('linkCadastrar')
+  const inNome = document.getElementById('inputNome')
+  const inGroup = document.getElementById('inputGroup')
+
+  if (modal == 'login') {
+    modal = 'cadastrar'
+    titulo.textContent = 'Fazer cadastro'
+    botao.textContent = 'Cadastrar-se'
+    link.textContent = 'Deseja fazer login?'
+    inNome.style.display = 'block'
+    inGroup.style.display = 'flex'
+  } else if (modal == 'cadastrar') {
+    modal = 'login'
+    titulo.textContent = 'Login'
+    botao.textContent = 'Entrar'
+    link.textContent = 'Deseja fazer cadastro?'
+    inNome.style.display = 'none'
+    inGroup.style.display = 'none'
+  }
+
+  return modal
+}
