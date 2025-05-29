@@ -29,7 +29,7 @@ def cadastro(nome:str, cnpj:str, telefone:str, email:str, senha:str):
         conexao.commit()
 
         return {'type': 'success', 'mensagem': 'Cadastrado com sucesso'}
-    except:
+    except NameError as erro:
         return {'type': 'error', 'mensagem': 'Falha no cadastro'}
 
     # cursor.close()
