@@ -34,23 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const dicionario = {
-      TCP: 'TCP (Transmission Control Protocol), ou Protocolo de Controle de Transmissão, é um dos principais protocolos da camada de transporte no modelo TCP/IP, que é a base da comunicação na internet.',
-      TLS: 'TLS (Transport Layer Security), ou Segurança da Camada de Transporte, é um protocolo de segurança que protege dados transmitidos pela internet.',
-      DATA: 'Dados reais que estão sendo transmitidos entre dispositivos.',
-      '_WS.MALFORMED': '_WS.MALFORMED está relacionado a um erro ou status indicando que uma mensagem WebSocket (WS) está malformada. ou seja, a mensagem recebida não segue o formato esperado pelo protocolo WebSocket.',
-      ARP: 'ARP (Address Resolution Protocol), ou Protocolo de Resolução de Endereços, é um protocolo usado em redes de computadores para descobrir o endereço físico (MAC address) de um dispositivo na rede a partir de um endereço IP.',
-      UDP: 'o User Datagram Protocol (UDP) é uma alternativa mais rápida, mas menos confiável, ao TCP na camada de transporte. É frequentemente usado em serviços como streaming de vídeo e jogos, onde a entrega rápida de dados é fundamental.',
-      HTTP: 'o Protocolo de Transferência de Hipertexto (HTTP) é a base da Rede Mundial de Computadores, a internet com a qual a maioria dos usuários interage. Ele é utilizado para transferir dados entre dispositivos. O HTTP pertence à camada de aplicação (camada 7), porque deixa os dados com um formato que os aplicativos (como por exemplo, um navegador) podem usar diretamente, sem interpretação adicional. As camadas inferiores do modelo OSI são tratadas pelo sistema operacional de um computador, não pelos aplicativos.',
-      HTTPS: 'O problema com o HTTP é que ele não é criptografado: qualquer invasor que interceptar uma mensagem HTTP poderá lê-la. O HTTPS (HTTP Seguro) corrige isso criptografando as mensagens HTTP.',
-      DNS: 'DNS (Domain Name System), ou Sistema de Nomes de Domínio, é como uma “agenda de contatos” da internet. Ele traduz nomes de sites (como www.google.com) em endereços IP (como 142.250.72.14), que os computadores usam para se comunicar entre si.',
-      ICMP: 'Usado para diagnóstico de rede, como o ping.',
-      ICMPV6: 'Versão do ICMP para redes IPv6, usado para diagnóstico de rede, incluindo Neighbor Discovery.',
-      SSH: 'SSH (Secure Shell) é um protocolo de rede usado para acessar e administrar computadores remotamente de forma segura, pela linha de comando.',
-      FTP: 'Protocolo de Transferência de Arquivos (do inglês: File Transfer Protocol, abreviado FTP) é um protocolo padrão/genérico independente de hardware sobre um modo de transferir arquivos/ficheiros e também é um programa de transferência.',
-      DHCP: 'DHCP (Dynamic Host Configuration Protocol), ou Protocolo de Configuração Dinâmica de Host, é um protocolo de rede que atribui automaticamente endereços IP e outras configurações de rede para os dispositivos de uma rede.'
-    };
-
     const ctx = document.getElementById('grafico').getContext('2d');
   
     let grafico;
