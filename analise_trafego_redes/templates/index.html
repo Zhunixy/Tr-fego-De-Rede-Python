@@ -135,132 +135,326 @@
 
   <p style="margin-top: 10rem;"></p>
 
-  <h1 style="text-align: center;">Documentação</h1>
-  <center>
-  <hr style="margin-bottom: 5rem; width: 200px; border: 3px solid blue;">
-  </center>
-  <section id="info-container">
-    <div class="modelosecao">
-      <i class="fa-solid fa-cubes icons"></i>
-      <h1>Função e propósitos do SharkFlow:</h1>
-      <p>SharkFlow é uma ferramenta de análise de rede, usada para capturar e examinar o tráfego de dados em tempo real. Ela permite observar comunicações como navegação na web, e-mails, transferências de arquivos, chamadas de voz, entre outros protocolos (TCP, UDP, HTTP, DNS).</p>
-    </div>
-
-    <div class="modelosecao">
-      <i class="fa-solid fa-cubes icons"></i>
-      <h1>Diagnóstico de problemas de rede:</h1>
-      <p>É amplamente utilizada para diagnosticar problemas como latência, perda de pacotes, congestionamento e falhas de desempenho na rede. Também ajuda a identificar atividades suspeitas, como invasões, malware e tráfego malicioso.</p>
-    </div>
-
-    <div class="modelosecao">
-      <i class="fa-solid fa-cubes icons"></i>
-      <h1>Segurança e monitoramento de atividades suspeitas:</h1>
-      <p>Além disso, o SharkFlow permite monitorar o uso da largura de banda, localizar gargalos e otimizar o desempenho da rede. É uma ferramenta valiosa tanto para profissionais quanto para estudantes que desejam entender melhor o funcionamento das redes.</p>
-    </div>
-
-    <div class="modelosecao">
-      <i class="fa-solid fa-cubes icons"></i>
-      <h1>Importância da ética e privacidade no uso:</h1>
-      <p>O uso da ferramenta deve ser feito com permissão e respeitando as leis de privacidade, já que ela pode capturar dados sensíveis, como logins e senhas, especialmente quando não há criptografia na transmissão.</p>
-    </div>
-  </section>
-
-  <p style="margin-top: 7rem;"></p>
-  <center>
-  <section style="list-style: none;" id="codigo" class="modelosecao">
-    <h1 style="text-align: center; margin-bottom: 15px;">Código:</h1>
-    <p>
-      <ol>
-        <li>Criação de um novo loop de eventos com <code>asyncio</code>.</li>
-        <li>Verificação da existência do arquivo <code>captura.pcap</code>.</li>
-        <li>Leitura dos pacotes utilizando <code>pyshark.FileCapture</code>.</li>
-        <li>Extração de informações de cada pacote:
-          <ul>
-            <li>Timestamp (hora da captura)</li>
-            <li>IP de origem e destino</li>
-            <li>Portas de origem e destino</li>
-            <li>MAC de origem e destino</li>
-            <li>Protocolo</li>
-            <li>Tamanho do pacote</li>
-          </ul>
-        </li>
-        <li>Armazenamento dos dados em uma lista de dicionários.</li>
-        <li>Contabilização de estatísticas por:
-          <ul>
-            <li>Protocolo</li>
-            <li>IP de origem</li>
-            <li>IP de destino</li>
-          </ul>
-        </li>
-        <li>Fechamento da captura e retorno dos dados coletados.</li>
-      </ol>
-    </p>
-
-    <h2 style="text-align: center;">Possíveis Expansões</h2>
-    <ul>
-      <li>Geração de relatórios em formatos como CSV ou JSON.</li>
-      <li>Criação de gráficos para visualização das estatísticas.</li>
-      <li>Desenvolvimento de uma interface web para exibição dos dados.</li>
-    </ul>
-  </section>
-  </center>
-
-  <div class="code-container">
-    <button class="copy-button">Copiar</button>
-    <pre><code class="language-python">
-        def analisar_pacotes():
-          loop = asyncio.new_event_loop()
-          asyncio.set_event_loop(loop)
-      
-          nome_arquivo = 'captura.pcap'
-          caminho_arquivo = os.path.join(os.path.dirname(os.path.realpath(__file__)), nome_arquivo)
-      
-          if not os.path.exists(caminho_arquivo):
-              print(f"Erro: O arquivo '{nome_arquivo}' não foi encontrado no diretório '{caminho_arquivo}'.")
-              return 
-      
-          captura = pyshark.FileCapture(caminho_arquivo)
-      
-          total_pacotes = 0
-          pacotes_por_protocolo = {}
-          pacotes_por_ip_origem = {}
-          pacotes_por_ip_destino = {}
-      
-          for pacote in captura:
-              # Extração de informações do pacote
-              # ...
-              lista_analise.append({
-                  "Hora": Timestamp, 
-                  "IP_origem": Endereço_IP_Origem, 
-                  "IP_destino": Endereço_IP_Destino, 
-                  "Porta_origem": Porta_Origem, 
-                  "Porta_destino": Porta_Destino, 
-                  "MAC_origem": MAC_Origem, 
-                  "MAC_destino": MAC_Destino, 
-                  "Protocolo": Protocolo, 
-                  "Tamanho": Tamanho_Pacote
-              })
-      
-          captura.close()
-      
-          # Impressão de estatísticas
-          # ...
-          return [lista_analise, pacotes_protocolo, pacotes_IP_origem, pacotes_IP_destino]
-    </code></pre>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+<!-- Modern Documentation Section -->
+<section class="documentation-section">
+  <div class="section-header">
+    <h2 class="section-title">Documentação</h2>
+    <div class="divider"></div>
   </div>
 
-  <center>
-  <section class="modelosecao">
-    <h1>Código:</h1>
-    <p><a href="https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git" target="_blank">https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git</a></p>
-    <p>Link do GitHub com todo o código para análise detalhada</p>
-  </section>
-  </center>
+  <div class="features-grid">
+    <!-- Feature Card 1 -->
+    <div class="feature-card">
+      <div class="card-icon">
+        <i class="fas fa-network-wired"></i>
+      </div>
+      <div class="card-content">
+        <h3>Função e propósitos</h3>
+        <p>SharkFlow é uma ferramenta de análise de rede em tempo real que monitora comunicações como navegação web, e-mails, transferências de arquivos e chamadas VoIP, suportando protocolos como TCP, UDP, HTTP e DNS.</p>
+      </div>
+    </div>
 
+    <!-- Feature Card 2 -->
+    <div class="feature-card">
+      <div class="card-icon">
+        <i class="fas fa-bug"></i>
+      </div>
+      <div class="card-content">
+        <h3>Diagnóstico de rede</h3>
+        <p>Identifica problemas como latência, perda de pacotes e congestionamento, além de detectar atividades suspeitas como invasões e malware, ajudando a manter sua rede segura e performática.</p>
+      </div>
+    </div>
+
+    <!-- Feature Card 3 -->
+    <div class="feature-card">
+      <div class="card-icon">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <div class="card-content">
+        <h3>Monitoramento de segurança</h3>
+        <p>Analisa o uso da largura de banda, identifica gargalos e otimiza o desempenho da rede, sendo essencial para administradores de rede e estudantes de TI.</p>
+      </div>
+    </div>
+
+    <!-- Feature Card 4 -->
+    <div class="feature-card">
+      <div class="card-icon">
+        <i class="fas fa-user-lock"></i>
+      </div>
+      <div class="card-content">
+        <h3>Ética e privacidade</h3>
+        <p>Ferramenta poderosa que deve ser usada com responsabilidade, sempre com permissão e em conformidade com as leis de proteção de dados e privacidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Code Section -->
+<section class="code-section">
+  <div class="section-header">
+    <h2 class="section-title">Implementação Técnica</h2>
+    <div class="divider"></div>
+  </div>
+
+  <div class="implementation-steps">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <h3>Captura de Pacotes</h3>
+      <ul>
+        <li>Loop de eventos com <code>asyncio</code></li>
+        <li>Leitura via <code>pyshark.FileCapture</code></li>
+        <li>Processamento do arquivo <code>.pcap</code></li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <h3>Análise de Dados</h3>
+      <ul>
+        <li>Extração de metadados</li>
+        <li>Identificação de protocolos</li>
+        <li>Mapeamento de fluxos</li>
+      </ul>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <h3>Visualização</h3>
+      <ul>
+        <li>Geração de estatísticas</li>
+        <li>Criação de gráficos</li>
+        <li>Exportação de relatórios</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="code-highlight">
+    <div class="code-header">
+      <h3>Exemplo do Código Principal</h3>
+      <button class="copy-button">
+        <i class="fas fa-copy"></i> Copiar
+      </button>
+    </div>
+    <pre><code class="language-python">def analisar_pacotes():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    
+    captura = pyshark.FileCapture('rede.pcap')
+    
+    for pacote in captura:
+        # Processamento dos pacotes
+        print(f"Protocolo: {pacote.highest_layer}")
+        print(f"Tamanho: {pacote.length} bytes")
+    
+    captura.close()</code></pre>
+  </div>
+
+  <div class="github-cta">
+    <a href="https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git" target="_blank" class="github-button">
+      <i class="fab fa-github"></i> Ver código completo no GitHub
+    </a>
+    <p class="github-description">Explore todo o projeto, contribua ou faça um fork do repositório</p>
+  </div>
+</section>
+
+<style>
+  .documentation-section, 
+  .code-section,
+  .features-section {
+    max-width: 1200px;
+    margin: 5rem auto;
+    padding: 0 2rem;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .divider {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(135deg, #3498db, #2a7fe0);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #e0e6ed;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  }
+
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3498db, #2a7fe0);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .feature-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .feature-card p {
+    color: #7f8c8d;
+    line-height: 1.6;
+  }
+
+  .implementation-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .step-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #e0e6ed;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #3498db, #2a7fe0);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .step-card h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .step-card ul {
+    padding-left: 1.2rem;
+    color: #7f8c8d;
+    line-height: 1.8;
+  }
+
+  .code-highlight {
+    background: #2d3748;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 3rem 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  .code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .language-python{
+     color: white !important;
+  }
+
+  .code-header h3 {
+    color: #e2e8f0;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .copy-button {
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: #e2e8f0;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+  }
+
+  .copy-button:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  .github-cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .github-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #2c3e50;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .github-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    background: #1a252f;
+  }
+
+  .github-description {
+    color: #7f8c8d;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .features-grid,
+    .implementation-steps {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
   <div class="modal-login" id="modalLogin">
     <div class="form-login">
       <div class="modal-header">
