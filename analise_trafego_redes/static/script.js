@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data: {
             labels: labels,
             datasets: [{
-                label: 'quantidade',
+                label: 'Quantidade',
                 data: valores,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgba(255, 99, 132, 1)',
@@ -386,4 +386,17 @@ function trocaModal(modal) {
   }
 
   return modal
+}
+
+function pdf() {
+  const item = document.querySelector(".modal-body");
+
+  var opt = {
+      margin: 1,
+      filename: "Grafico.pdf",
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+  };
+
+  html2pdf().set(opt).from(item).save();
 }

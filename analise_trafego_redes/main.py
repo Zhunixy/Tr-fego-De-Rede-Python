@@ -190,17 +190,17 @@ def main():
                         for i in protocolos_geral:
                             lista_1.append(i["protocolo"])
                             lista_2.append(i["quantidade"])                                
-                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="protocolos")
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="Protocolos")
                     case 2:
                         for i in IP_origem_geral:
                             lista_1.append(i["ip"])
                             lista_2.append(i["quantidade"])                                
-                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de origem")
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de Origem")
                     case 3:
                         for i in IP_destino_geral: 
                             lista_1.append(i["ip"])
                             lista_2.append(i["quantidade"])                                
-                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de destino")
+                        return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de Destino")
                 return render_template("index.html")
         else:
             return render_template("index.html")
