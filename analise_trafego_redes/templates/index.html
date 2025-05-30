@@ -39,7 +39,7 @@
           <br><br>
         </div>
         <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
-        <div id="analise" style="overflow-x:auto;"></div>
+        <div id="analise" style="overflow-x:auto;">
           <table class="tabela">
             <tr>
               <th class="attr">Hora/Data</th>
@@ -87,8 +87,8 @@
         <button class="btn_alternar" id="proximo" value="proximo" name="alternar">></button>
       </div>
       <p><br><br><br><br></p>
-      <button class="btn_tabela" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
-      <button class="btn_tabela" value="encerrar tabela" name="encerrar">Encerrar tabela</button> <br> <br> <br> <br>
+      <button class="btn_tabela" value="recarregar" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
+      <button class="btn_tabela" value="encerrar" name="encerrar">Encerrar</button> <br> <br> <br> <br>
     </form>
   {% else %}
     {% if erro: %}
@@ -96,7 +96,7 @@
     {% else %}
       <form action="#" method="post">
         <p><br><br><br><br></p>
-        <button class="btn_tabela" name="iniciar" id="iniciar" style="display: none;">Iniciar tabela</button>
+        <button class="btn_tabela" value="iniciar" name="iniciar" id="iniciar" style="display: none;">Iniciar tabela</button>
       </form>
       <button class="btn_tabela" id="btn2-login" style="display: none;">Iniciar tabela</button>
     {% endif %}

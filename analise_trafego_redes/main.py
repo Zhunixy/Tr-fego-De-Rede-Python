@@ -1,9 +1,10 @@
-from flask import Flask, url_for, render_template, request, session
+from flask import Flask, url_for, render_template, request, session, redirect
 import os
 import pyshark
 import asyncio
 import usuario
 from flask_session import Session
+import math
 
 def analisar_pacotes():
     lista_analise = []
@@ -120,7 +121,12 @@ def analisar_pacotes():
     return [lista_analise, pacotes_protocolo, pacotes_IP_origem, pacotes_IP_destino]
 
 app = Flask(__name__)
+
 tab = 0
+tabela_completa = 0
+protocolos_geral = 0
+IP_origem_geral = 0
+IP_destino_geral = 0
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -129,6 +135,10 @@ Session(app)
 @app.route("/", methods = ["GET", "POST"])
 def main():  
     global tab
+    global tabela_completa
+    global protocolos_geral
+    global IP_origem_geral
+    global IP_destino_geral
     try:
         if request.method == "POST":
             
@@ -139,21 +149,25 @@ def main():
 
             tab = tab % 4
 
-            if request.form.get('encerrar') == 'encerrar tabela':
+            if request.form.get('encerrar') == 'encerrar':
                 tab = 0
+                tabela_completa = 0
+                protocolos_geral = 0
+                IP_origem_geral = 0
+                IP_destino_geral = 0
                 return render_template("index.html")
             else:
-                tabela = analisar_pacotes()[0]
-                protocolos_geral = analisar_pacotes()[1]
-                IP_origem_geral = analisar_pacotes()[2]
-                IP_destino_geral = analisar_pacotes()[3]
+                if not (tabela_completa and protocolos_geral and IP_origem_geral and IP_destino_geral):
+                    tabela_completa, protocolos_geral, IP_origem_geral, IP_destino_geral = analisar_pacotes()
+                elif request.form.get('recarregar') == 'recarregar' or request.form.get('iniciar') == 'iniciar':
+                    tabela_completa, protocolos_geral, IP_origem_geral, IP_destino_geral = analisar_pacotes()
 
                 lista_1 = []
                 lista_2 = []
     
                 match int(tab):
                     case 0:
-                        return render_template("index.html", analise=True, tabela=tabela)
+                        return render_template("index.html", analise=True, tabela=tabela_completa)
                     case 1:
                         for i in protocolos_geral:
                             lista_1.append(i["protocolo"])
@@ -165,7 +179,7 @@ def main():
                             lista_2.append(i["quantidade"])                                
                         return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de origem")
                     case 3:
-                        for i in IP_destino_geral:
+                        for i in IP_destino_geral: 
                             lista_1.append(i["ip"])
                             lista_2.append(i["quantidade"])                                
                         return render_template("index.html", analise=True, lista_1=lista_1, lista_2=lista_2, grafico="IPs de destino")
