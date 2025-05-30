@@ -289,9 +289,14 @@ $(document).ready(function() {
 
   $('#entenda').click(function(e) {
     e.preventDefault()
+    const volta = document.getElementById('volta-inicio')
+
     fim.style.display = 'block'
     inicio.style.display = 'none'
+    entenda.classList.add('active')
+    volta.classList.remove('active')
   })
+    
 })
 
 function login(email, senha) {
