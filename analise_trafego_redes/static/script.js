@@ -166,6 +166,18 @@ $(document).ready(function() {
   $('#dados').click(function(e) {
     e.preventDefault()
     modalLogin.style.display = 'flex'
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      assync: true,
+      url: '/validate',
+      success: function(dados) {
+        inputNome.value = dados.nome
+        inputCnpj.value = dados.cnpj
+        inputTelefone.value = dados.telefone
+        inputEmail.value = dados.email
+      }
+    })
   })
 
 
