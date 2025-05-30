@@ -233,11 +233,23 @@ def cadastro():
     else:
         return {'type': 'error', 'mensagem': 'Campo(s) obrigatório(s) não preenchido(s)'}
 
+@app.route("/update", methods = ["GET", "POST"])
+def update():
+    nome = request.form.get('nome')
+    cnpj = request.form.get('cnpj')
+    telefone = request.form.get('telefone')
+    email = request.form.get('email')
+
+    if nome != '' and cnpj != '' and telefone != '' and email != '':
+        return usuario.update(session['id'], nome, cnpj, telefone, email)
+    else:
+        return {'type': 'error', 'mensagem': 'Existem campos vazios'}    
+
 @app.route("/validate", methods = ["GET", "POST"])
 def validate():
-        if len(session) < 1:
-            session['id'] = None
-        return usuario.validate(session['id'])
+    if len(session) < 1:
+        session['id'] = None
+    return usuario.validate(session['id'])
 
 @app.route("/logout", methods = ["GET", "POST"])
 def logout():

@@ -241,6 +241,8 @@ $(document).ready(function() {
       login(email, senha)
     } else if (modal == 'cadastrar') {
       cadastro(nome, cnpj, telefone, email, senha)
+    } else if (modal == 'dados') {
+      update(nome, cnpj, telefone, email)
     }
   })
 
@@ -328,6 +330,28 @@ function cadastro(nome, cnpj, telefone, email, senha) {
   })
 }
 
+function update(nome, cnpj, telefone, email) {
+  $.ajax({
+    type: 'POST',
+    dataType: 'json',
+    assync: true,
+    data: {'nome': nome, 'cnpj': cnpj, 'telefone': telefone, 'email': email},
+    url: '/update',
+    success: function(dados) {
+      $('.form-login').append(`
+        <div class="spam-login">
+          <p>${dados.mensagem}</p>
+        </div>  
+      `)
+      setTimeout(() => {
+        $('.spam-login').remove()
+        if (dados.type == 'success') {
+        }
+      }, 2500)
+    }
+  })
+}
+
 function trocaModal(modal) {
   const titulo = document.getElementById('modal-titulo')
   const botao = document.getElementById('btnLogin')
@@ -357,6 +381,7 @@ function trocaModal(modal) {
     link.style.display = 'none'
     inNome.style.display = 'block'
     inGroup.style.display = 'flex'
+    inputSenha.style.display = 'none'
   }
 
   return modal

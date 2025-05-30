@@ -42,9 +42,9 @@ def validate(id:int):
     except:
         return {}
 
-def update(id:int, nome:str, cnpj:str, telefone:str, email:str, senha:str):
+def update(id:int, nome:str, cnpj:str, telefone:str, email:str):
     try:
-        sql = f'UPDATE USER SET NAME = "{nome}", CPF_CNPJ = "{cnpj}", TELEFONE = "{telefone}", EMAIL = "{email}"'
+        sql = f'UPDATE USER SET NAME = "{nome}", CPF_CNPJ = "{cnpj}", TELEFONE = "{telefone}", EMAIL = "{email}" WHERE ID = {id}'
         cursor.execute(sql)
         conexao.commit()
 
