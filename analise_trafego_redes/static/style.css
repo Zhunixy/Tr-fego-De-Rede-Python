@@ -21,8 +21,6 @@ body{
   color: white !important;
   width: 100% !important;
   position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
 }
 
 .logo{ 
@@ -563,3 +561,84 @@ pre code {
     background-color: #0056b3;
     font-weight: bold;
 }
+
+    .explanation-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    .explanation-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .explanation-title {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+    
+    .concept-card {
+      background: white;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border: 1px solid #e0e6ed;
+    }
+    
+    .concept-title {
+      color: #2a7fe0;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .concept-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .concept-text {
+      flex: 1;
+      min-width: 300px;
+      color: #4a5568;
+      line-height: 1.6;
+    }
+    
+    .concept-image {
+      flex: 1;
+      min-width: 300px;
+      text-align: center;
+    }
+    
+    .concept-image img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    
+    .analogy {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      border-left: 4px solid #2a7fe0;
+    }
+    
+    .analogy-title {
+      font-weight: bold;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+      .concept-content {
+        flex-direction: column;
+      }
+      
+      .explanation-title {
+        font-size: 2rem;
+      }
+    }

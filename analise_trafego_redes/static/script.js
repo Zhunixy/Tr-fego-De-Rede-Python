@@ -286,6 +286,13 @@ $(document).ready(function() {
       $('#btnLogin').click()
     }
   })
+
+  $('#entenda').click(function(e){
+    e.preventDefault()
+    fim.style.display="block"
+    inicio.style.display="none"
+  })
+
 })
 
 function login(email, senha) {
@@ -403,3 +410,4 @@ function pdf() {
 
   html2pdf().set(opt).from(item).save();
 }
+
