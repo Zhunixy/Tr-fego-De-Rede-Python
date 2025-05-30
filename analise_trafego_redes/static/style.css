@@ -240,8 +240,8 @@ main {
 }
 
 #div_alternar{
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 60%;
   left: 0;
   width: 100%;
   display: flex;
