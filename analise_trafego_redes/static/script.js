@@ -148,6 +148,7 @@ $(document).ready(function() {
       else {
         btnLogin.style.display = 'block'
         btn2Login.style.display = 'block'
+        btnIniciar.style.display = 'none'
         btnOpt.style.display = 'none'
       }
     }
