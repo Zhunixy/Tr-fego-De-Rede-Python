@@ -140,6 +140,9 @@ $(document).ready(function() {
       if (dados.id != null){
         btnOpt.style.display = 'flex'
         userOpt.textContent = `Olá, ${dados.nome}!`
+        modal = 'dados'
+        trocaModal(modal)
+
         btnIniciar.style.display = 'block'
       }
       else {
@@ -160,6 +163,12 @@ $(document).ready(function() {
     modalLogin.style.display = 'flex'
   })
 
+  $('#dados').click(function(e) {
+    e.preventDefault()
+    modalLogin.style.display = 'flex'
+  })
+
+
   $(document).click(function(e) {
     if (!e.target.closest('#selectOpt') && $('#selectOpt').is(':visible')) {
       select.style.display = 'none'
@@ -167,6 +176,11 @@ $(document).ready(function() {
     else if (e.target.closest('#userOpt')) {
       select.style.display = 'flex'
     }
+  })
+
+  $('.options').click(function(e) {
+    e.preventDefault()
+    select.style.display = 'none'
   })
 
   $('#btn-logout').click(function(e) {
@@ -192,8 +206,10 @@ $(document).ready(function() {
     $('#inputTelefone').val('')
     $('#inputEmail').val('')
     $('#inputSenha').val('')
-    modal = 'cadastrar'
-    modal = trocaModal(modal)
+    if (modal != 'dados'){
+      modal = 'cadastrar'
+      modal = trocaModal(modal)
+    }
   });
 
   $('#linkCadastrar').click(function(e) {
@@ -322,6 +338,13 @@ function trocaModal(modal) {
     link.textContent = 'Deseja fazer cadastro?'
     inNome.style.display = 'none'
     inGroup.style.display = 'none'
+  }
+  else if (modal == 'dados') {
+    titulo.textContent = 'Meus dados'
+    botao.textContent = 'Salvar alterações'
+    link.style.display = 'none'
+    inNome.style.display = 'block'
+    inGroup.style.display = 'flex'
   }
 
   return modal
