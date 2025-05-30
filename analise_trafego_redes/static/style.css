@@ -487,3 +487,38 @@ pre code {
   justify-content: space-between;
 }
 
+.opt {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.user-opt {
+  color: #fff;
+}
+
+.user-opt:hover {
+  color: #dfdfdf;
+}
+
+.select-opt {
+  background-color: #dfdfdf;
+  position: absolute;
+  margin-top: 30px;
+  padding: 5px 0px 5px 0px;
+  width: 150px;
+  display: none;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.select-opt .options {
+  text-decoration: none;
+  color: #000;
+  width: 100%;
+  padding: 0px 0px 0px 10%;
+}
+
+.select-opt .options:hover {
+  background-color: #c5c5c5;
+}

@@ -11,7 +11,7 @@ cursor = conexao.cursor()
 
 def login(email:str, senha:str):
     try:
-        sql = f'SELECT ID FROM `USER` WHERE EMAIL = "{email}" AND PASSWORD = MD5("{senha}")'
+        sql = f'SELECT ID FROM USER WHERE EMAIL = "{email}" AND PASSWORD = MD5("{senha}")'
         cursor.execute(sql)
         sql = cursor.fetchall()
 
@@ -29,8 +29,18 @@ def cadastro(nome:str, cnpj:str, telefone:str, email:str, senha:str):
         conexao.commit()
 
         return {'type': 'success', 'mensagem': 'Cadastrado com sucesso'}
-    except NameError as erro:
+    except:
         return {'type': 'error', 'mensagem': 'Falha no cadastro'}
+    
+def validate(id:int):
+    try:
+        sql = f'SELECT * FROM USER WHERE ID = {id}'
+        cursor.execute(sql)
+        sql = cursor.fetchall()
+
+        return {'id': sql[0][0], 'nome': sql[0][1], 'cnpj': sql[0][2], 'telefone': sql[0][3], 'email': sql[0][4], 'senha': sql[0][5]}
+    except:
+        return {}
 
     # cursor.close()
     # conexao.close()

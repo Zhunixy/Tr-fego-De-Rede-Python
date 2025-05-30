@@ -123,6 +123,8 @@ document.addEventListener("DOMContentLoaded", function () {
 $(document).ready(function() {
 
   let modal = 'login'
+  const select = document.getElementById('selectOpt')
+
 
   $.ajax({
     type: 'POST',
@@ -131,12 +133,15 @@ $(document).ready(function() {
     url: '/validate',
     success: function(dados) {
       const btnLogin = document.getElementById('btn-login')
-      const btnLogout = document.getElementById('btn-logout')
+      const btnOpt = document.getElementById('opt')
       const btn2Login = document.getElementById('btn2-login')
       const btnIniciar = document.getElementById('iniciar')
+      const userOpt = document.getElementById('userOpt')
+
       if (dados.id != null){
-        btnLogout.style.display = 'block'
+        btnOpt.style.display = 'flex'
         btnIniciar.style.display = 'block'
+        userOpt.textContent = `Olá, ${dados.nome}!`
       }
       else {
         btnLogin.style.display = 'block'
@@ -153,6 +158,15 @@ $(document).ready(function() {
   $('#btn2-login').click(function(e) {
     e.preventDefault()
     modalLogin.style.display = 'flex'
+  })
+
+  $(document).click(function(e) {
+    if (!e.target.closest('#selectOpt') && $('#selectOpt').is(':visible')) {
+      select.style.display = 'none'
+    } 
+    else if (e.target.closest('#userOpt')) {
+      select.style.display = 'flex'
+    }
   })
 
   $('#btn-logout').click(function(e) {

@@ -219,7 +219,7 @@ def cadastro():
 def validate():
         if len(session) < 1:
             session['id'] = None
-        return {'id': session['id']}
+        return usuario.validate(session['id'])
 
 @app.route("/logout", methods = ["GET", "POST"])
 def logout():
