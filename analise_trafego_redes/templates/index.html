@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SharkFlow</title>   <!-- Title = titulo da página, e logo abaixo o link, que serve para linkar o documento css com o html.   -->
+  <title>SharkFlow</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -29,20 +28,29 @@
           <a href="#" class="options" id="btn-logout">Logout</a>
         </div>
       </div>
-      <button class="botao" id="btn-login" style="display: none;">Login</button>
+      <button class="botao" id="btn-login" style="display: none;"> Login</button>
     </nav>
   <main>
-    {% if not analise: %}
+    {% if not analise %}
     <div class="main">
       <h1 id="typing">Bem Vindo Ao <br> <br> <span>Sistema</span></h1> <br>
       <br><br>
     </div>
-    <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
-    {% endif %}
-    {% if analise: %}
-      {% if tabela: %}
+    
+    <form action="#" method="post">
+      <p><br><br><br><br></p>
+      {% if erro %}
+        <p class="erro" style="text-align: center; letter-spacing: 5px;">{{erro}}</p>
+      {% else %}
+        <button class="btn_tabela" value="iniciar" name="iniciar" id="iniciar">Iniciar tabela</button>
+      {% endif %}
+    </form>
+    <button class="btn_tabela" id="btn2-login" style="display: none;">Iniciar tabela</button>
+    
+    {% else %}
+      {% if tabela %}
         <div class="table-title">
-          <h1>Tabelinha do Kauan</h1> <br>
+          <h1>Tabela de Pacotes</h1> <br>
           <br><br>
         </div>
         <p class="p" style="text-align: center;">Sistema de análise de tráfego de rede da SharkFlow</p>
@@ -59,7 +67,7 @@
               <th class="attr">Protocolo</th>
               <th class="attr">Tamanho</th>
             </tr>
-            {% for item in tabela: %}
+            {% for item in tabela %}
             <tr>
               <th>{{item.Hora}}</th>
               <th>{{item.IP_origem}}</th>
@@ -74,8 +82,28 @@
             {% endfor %}
           </table>
         </div>
-      {% endif %}  
-      {% if lista_1 and lista_2: %}
+        
+        <!-- Controles de paginação -->
+        <div class="pagination">
+          <form action="#" method="post">
+            {% if pagina_atual > 1 %}
+              <button type="submit" name="pagina" value="{{pagina_atual - 1}}" class="page-btn">Anterior</button>
+            {% endif %}
+            
+            {% for num in range(1, total_paginas + 1) %}
+              {% if num == pagina_atual %}
+                <button type="button" class="page-btn active">{{num}}</button>
+              {% else %}
+                <button type="submit" name="pagina" value="{{num}}" class="page-btn">{{num}}</button>
+              {% endif %}
+            {% endfor %}
+            
+            {% if pagina_atual < total_paginas %}
+              <button type="submit" name="pagina" value="{{pagina_atual + 1}}" class="page-btn">Próxima</button>
+            {% endif %}
+          </form>
+        </div>
+      {% elif lista_1 and lista_2 %}
         <div class="table-title">
           <h1>grafico de {{grafico}}</h1> <br>
           <br><br>
@@ -84,169 +112,154 @@
         <canvas id="grafico"></canvas>
 
         <script>
-          const labels = {{ lista_1 | tojson}}
-          const valores = {{ lista_2 | tojson}}
+          const labels = {{ lista_1 | tojson }};
+          const valores = {{ lista_2 | tojson }};
         </script>
-      {% endif %}  
-    <form action="#" method="post">
-      <div id="div_alternar">
-        <button class="btn_alternar" id="anterior" value="anterior" name="alternar"><</button>
-        <button class="btn_alternar" id="proximo" value="proximo" name="alternar">></button>
-      </div>
-      <p><br><br><br><br></p>
-      <button class="btn_tabela" value="recarregar" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
-      <button class="btn_tabela" value="encerrar" name="encerrar">Encerrar</button> <br> <br> <br> <br>
-    </form>
-  {% else %}
-    {% if erro: %}
-      <p class="erro" style="text-align: center; letter-spacing: 5px;">{{erro}}</p>
-    {% else %}
+      {% endif %}
+      
       <form action="#" method="post">
+        <div id="div_alternar">
+          <button class="btn_alternar" id="anterior" value="anterior" name="alternar"><</button>
+          <button class="btn_alternar" id="proximo" value="proximo" name="alternar">></button>
+        </div>
         <p><br><br><br><br></p>
-        <button class="btn_tabela" value="iniciar" name="iniciar" id="iniciar" style="display: none;">Iniciar tabela</button>
+        <button class="btn_tabela" value="recarregar" name="recarregar">Recarregar tabela</button> <br> <br> <br> <br>
+        <button class="btn_tabela" value="encerrar" name="encerrar">Encerrar</button> <br> <br> <br> <br>
       </form>
-      <button class="btn_tabela" id="btn2-login" style="display: none;">Iniciar tabela</button>
     {% endif %}
-  {% endif %}
-</main>
+  </main>
 
-<center>
-  <i class="fa-solid fa-arrow-down flecha"></i>
-</center>
+  <center>
+    <i class="fa-solid fa-arrow-down flecha"></i>
+  </center>
 
-<p style="margin-top: 10rem;"></p>
+  <p style="margin-top: 10rem;"></p>
 
-<h1 style="text-align: center;">Documentação</h1>
-<center>
-<hr style="margin-bottom: 5rem; width: 200px; border: 3px solid blue;">
-</center>
-<section id="info-container">
-  <div class="modelosecao">
-    <i class="fa-solid fa-cubes icons"></i>
-    <h1>Função e propósitos do SharkFlow:</h1>
-    <p>SharkFlow é uma ferramenta de análise de rede, usada para capturar e examinar o tráfego de dados em tempo real. Ela permite observar comunicações como navegação na web, e-mails, transferências de arquivos, chamadas de voz, entre outros protocolos (TCP, UDP, HTTP, DNS).</p>
-  </div>
+  <h1 style="text-align: center;">Documentação</h1>
+  <center>
+  <hr style="margin-bottom: 5rem; width: 200px; border: 3px solid blue;">
+  </center>
+  <section id="info-container">
+    <div class="modelosecao">
+      <i class="fa-solid fa-cubes icons"></i>
+      <h1>Função e propósitos do SharkFlow:</h1>
+      <p>SharkFlow é uma ferramenta de análise de rede, usada para capturar e examinar o tráfego de dados em tempo real. Ela permite observar comunicações como navegação na web, e-mails, transferências de arquivos, chamadas de voz, entre outros protocolos (TCP, UDP, HTTP, DNS).</p>
+    </div>
 
-  <div class="modelosecao">
-    <i class="fa-solid fa-cubes icons"></i>
-    <h1>Diagnóstico de problemas de rede:</h1>
-    <p>É amplamente utilizada para diagnosticar problemas como latência, perda de pacotes, congestionamento e falhas de desempenho na rede. Também ajuda a identificar atividades suspeitas, como invasões, malware e tráfego malicioso.</p>
-  </div>
+    <div class="modelosecao">
+      <i class="fa-solid fa-cubes icons"></i>
+      <h1>Diagnóstico de problemas de rede:</h1>
+      <p>É amplamente utilizada para diagnosticar problemas como latência, perda de pacotes, congestionamento e falhas de desempenho na rede. Também ajuda a identificar atividades suspeitas, como invasões, malware e tráfego malicioso.</p>
+    </div>
 
-  <div class="modelosecao">
-    <i class="fa-solid fa-cubes icons"></i>
-    <h1>Segurança e monitoramento de atividades suspeitas:</h1>
-    <p>Além disso, o SharkFlow permite monitorar o uso da largura de banda, localizar gargalos e otimizar o desempenho da rede. É uma ferramenta valiosa tanto para profissionais quanto para estudantes que desejam entender melhor o funcionamento das redes.</p>
-  </div>
+    <div class="modelosecao">
+      <i class="fa-solid fa-cubes icons"></i>
+      <h1>Segurança e monitoramento de atividades suspeitas:</h1>
+      <p>Além disso, o SharkFlow permite monitorar o uso da largura de banda, localizar gargalos e otimizar o desempenho da rede. É uma ferramenta valiosa tanto para profissionais quanto para estudantes que desejam entender melhor o funcionamento das redes.</p>
+    </div>
 
-  <div class="modelosecao">
-    <i class="fa-solid fa-cubes icons"></i>
-    <h1>Importância da ética e privacidade no uso:</h1>
-    <p>O uso da ferramenta deve ser feito com permissão e respeitando as leis de privacidade, já que ela pode capturar dados sensíveis, como logins e senhas, especialmente quando não há criptografia na transmissão.</p>
-  </div>
-</section>
-
-<!-- Bloco separado para o código -->
- <p style="margin-top: 7rem;"></p>
- <center>
-<section style="list-style: none;" id="codigo" class="modelosecao">
-  <h1 style="text-align: center; margin-bottom: 15px;">Código:</h1>
-  <p>
-    <ol>
-      <li>Criação de um novo loop de eventos com <code>asyncio</code>.</li>
-      <li>Verificação da existência do arquivo <code>captura.pcap</code>.</li>
-      <li>Leitura dos pacotes utilizando <code>pyshark.FileCapture</code>.</li>
-      <li>Extração de informações de cada pacote:
-        <ul>
-          <li>Timestamp (hora da captura)</li>
-          <li>IP de origem e destino</li>
-          <li>Portas de origem e destino</li>
-          <li>MAC de origem e destino</li>
-          <li>Protocolo</li>
-          <li>Tamanho do pacote</li>
-        </ul>
-      </li>
-      <li>Armazenamento dos dados em uma lista de dicionários.</li>
-      <li>Contabilização de estatísticas por:
-        <ul>
-          <li>Protocolo</li>
-          <li>IP de origem</li>
-          <li>IP de destino</li>
-        </ul>
-      </li>
-      <li>Fechamento da captura e retorno dos dados coletados.</li>
-    </ol>
-  </p>
-
-  <h2 style="text-align: center;">Possíveis Expansões</h2>
-  <ul>
-    <li>Geração de relatórios em formatos como CSV ou JSON.</li>
-    <li>Criação de gráficos para visualização das estatísticas.</li>
-    <li>Desenvolvimento de uma interface web para exibição dos dados.</li>
-  </ul>
-</section>
-</center>
-<!-- codigo para analise -->
-<script src="script.js"></script>
-<div class="code-container">
-  <button class="copy-button">Copiar</button>
-  <pre><code class="language-python">
-      def analisar_pacotes():
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
-    
-        nome_arquivo = 'captura.pcap'
-        caminho_arquivo = os.path.join(os.path.dirname(os.path.realpath(__file__)), nome_arquivo)
-    
-        if not os.path.exists(caminho_arquivo):
-            print(f"Erro: O arquivo '{nome_arquivo}' não foi encontrado no diretório '{caminho_arquivo}'.")
-            return 
-    
-        captura = pyshark.FileCapture(caminho_arquivo)
-    
-        total_pacotes = 0
-        pacotes_por_protocolo = {}
-        pacotes_por_ip_origem = {}
-        pacotes_por_ip_destino = {}
-    
-        for pacote in captura:
-            # Extração de informações do pacote
-            # ...
-            lista_analise.append({
-                "Hora": Timestamp, 
-                "IP_origem": Endereço_IP_Origem, 
-                "IP_destino": Endereço_IP_Destino, 
-                "Porta_origem": Porta_Origem, 
-                "Porta_destino": Porta_Destino, 
-                "MAC_origem": MAC_Origem, 
-                "MAC_destino": MAC_Destino, 
-                "Protocolo": Protocolo, 
-                "Tamanho": Tamanho_Pacote
-            })
-    
-        captura.close()
-    
-        # Impressão de estatísticas
-        # ...
-        return [lista_analise, pacotes_protocolo, pacotes_IP_origem, pacotes_IP_destino]
-  
-  </code></pre>
-
-  <!-- Prism.js CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
-
-  <!-- Prism.js JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-
-</div>
-<center>
-<section class="modelosecao">
-  <h1>Código:</h1>
-  <p><a href="https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git" target="_blank">https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git</a>
-      <p>Link do GitHub com todo o código para análise detalhada</p>
+    <div class="modelosecao">
+      <i class="fa-solid fa-cubes icons"></i>
+      <h1>Importância da ética e privacidade no uso:</h1>
+      <p>O uso da ferramenta deve ser feito com permissão e respeitando as leis de privacidade, já que ela pode capturar dados sensíveis, como logins e senhas, especialmente quando não há criptografia na transmissão.</p>
+    </div>
   </section>
-</center>
+
+  <p style="margin-top: 7rem;"></p>
+  <center>
+  <section style="list-style: none;" id="codigo" class="modelosecao">
+    <h1 style="text-align: center; margin-bottom: 15px;">Código:</h1>
+    <p>
+      <ol>
+        <li>Criação de um novo loop de eventos com <code>asyncio</code>.</li>
+        <li>Verificação da existência do arquivo <code>captura.pcap</code>.</li>
+        <li>Leitura dos pacotes utilizando <code>pyshark.FileCapture</code>.</li>
+        <li>Extração de informações de cada pacote:
+          <ul>
+            <li>Timestamp (hora da captura)</li>
+            <li>IP de origem e destino</li>
+            <li>Portas de origem e destino</li>
+            <li>MAC de origem e destino</li>
+            <li>Protocolo</li>
+            <li>Tamanho do pacote</li>
+          </ul>
+        </li>
+        <li>Armazenamento dos dados em uma lista de dicionários.</li>
+        <li>Contabilização de estatísticas por:
+          <ul>
+            <li>Protocolo</li>
+            <li>IP de origem</li>
+            <li>IP de destino</li>
+          </ul>
+        </li>
+        <li>Fechamento da captura e retorno dos dados coletados.</li>
+      </ol>
+    </p>
+
+    <h2 style="text-align: center;">Possíveis Expansões</h2>
+    <ul>
+      <li>Geração de relatórios em formatos como CSV ou JSON.</li>
+      <li>Criação de gráficos para visualização das estatísticas.</li>
+      <li>Desenvolvimento de uma interface web para exibição dos dados.</li>
+    </ul>
+  </section>
+  </center>
+
+  <div class="code-container">
+    <button class="copy-button">Copiar</button>
+    <pre><code class="language-python">
+        def analisar_pacotes():
+          loop = asyncio.new_event_loop()
+          asyncio.set_event_loop(loop)
+      
+          nome_arquivo = 'captura.pcap'
+          caminho_arquivo = os.path.join(os.path.dirname(os.path.realpath(__file__)), nome_arquivo)
+      
+          if not os.path.exists(caminho_arquivo):
+              print(f"Erro: O arquivo '{nome_arquivo}' não foi encontrado no diretório '{caminho_arquivo}'.")
+              return 
+      
+          captura = pyshark.FileCapture(caminho_arquivo)
+      
+          total_pacotes = 0
+          pacotes_por_protocolo = {}
+          pacotes_por_ip_origem = {}
+          pacotes_por_ip_destino = {}
+      
+          for pacote in captura:
+              # Extração de informações do pacote
+              # ...
+              lista_analise.append({
+                  "Hora": Timestamp, 
+                  "IP_origem": Endereço_IP_Origem, 
+                  "IP_destino": Endereço_IP_Destino, 
+                  "Porta_origem": Porta_Origem, 
+                  "Porta_destino": Porta_Destino, 
+                  "MAC_origem": MAC_Origem, 
+                  "MAC_destino": MAC_Destino, 
+                  "Protocolo": Protocolo, 
+                  "Tamanho": Tamanho_Pacote
+              })
+      
+          captura.close()
+      
+          # Impressão de estatísticas
+          # ...
+          return [lista_analise, pacotes_protocolo, pacotes_IP_origem, pacotes_IP_destino]
+    </code></pre>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  </div>
+
+  <center>
+  <section class="modelosecao">
+    <h1>Código:</h1>
+    <p><a href="https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git" target="_blank">https://github.com/Zhunixy/Tr-fego-De-Rede-Python.git</a></p>
+    <p>Link do GitHub com todo o código para análise detalhada</p>
+  </section>
+  </center>
 
   <div class="modal-login" id="modalLogin">
     <div class="form-login">
@@ -272,10 +285,8 @@
     </div>
   </div>
 
-  </body>
-
   <script src="../static/jquery-3.6.0.js"></script>
   <script src="https://kit.fontawesome.com/951dd3b656.js" crossorigin="anonymous"></script>
-  <script src="../static/script.js"></script><script src="https://kit.fontawesome.com/951dd3b656.js" crossorigin="anonymous"></script>
+  <script src="../static/script.js"></script>
 </body>
 </html>

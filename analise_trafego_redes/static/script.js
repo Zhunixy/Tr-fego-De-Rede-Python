@@ -139,7 +139,7 @@ $(document).ready(function() {
 
       if (dados.id != null){
         btnOpt.style.display = 'flex'
-        userOpt.textContent = `Olá, ${dados.nome}!`
+        userOpt.innerHTML = ` <i class="fa-solid fa-circle-user" style="margin-right: 3px; color: white;"></i> Olá , ${dados.nome}!`
         modal = 'dados'
         trocaModal(modal)
 

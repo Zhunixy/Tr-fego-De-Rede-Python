@@ -127,6 +127,8 @@ tabela_completa = 0
 protocolos_geral = 0
 IP_origem_geral = 0
 IP_destino_geral = 0
+pagina_atual = 1
+itens_por_pagina = 10
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -139,13 +141,17 @@ def main():
     global protocolos_geral
     global IP_origem_geral
     global IP_destino_geral
+    global pagina_atual
+    
     try:
         if request.method == "POST":
             
             if request.form.get('alternar') == 'anterior':
                 tab -= 1
             elif request.form.get('alternar') == 'proximo':
-                tab += 1           
+                tab += 1
+            elif request.form.get('pagina'):
+                pagina_atual = int(request.form.get('pagina'))
 
             tab = tab % 4
 
@@ -155,19 +161,31 @@ def main():
                 protocolos_geral = 0
                 IP_origem_geral = 0
                 IP_destino_geral = 0
+                pagina_atual = 1
                 return render_template("index.html")
             else:
                 if not (tabela_completa and protocolos_geral and IP_origem_geral and IP_destino_geral):
                     tabela_completa, protocolos_geral, IP_origem_geral, IP_destino_geral = analisar_pacotes()
                 elif request.form.get('recarregar') == 'recarregar' or request.form.get('iniciar') == 'iniciar':
                     tabela_completa, protocolos_geral, IP_origem_geral, IP_destino_geral = analisar_pacotes()
+                    pagina_atual = 1
 
                 lista_1 = []
                 lista_2 = []
     
                 match int(tab):
                     case 0:
-                        return render_template("index.html", analise=True, tabela=tabela_completa)
+                        # Paginação
+                        total_paginas = math.ceil(len(tabela_completa) / itens_por_pagina)
+                        inicio = (pagina_atual - 1) * itens_por_pagina
+                        fim = inicio + itens_por_pagina
+                        tabela_paginada = tabela_completa[inicio:fim]
+                        
+                        return render_template("index.html", 
+                                           analise=True, 
+                                           tabela=tabela_paginada,
+                                           pagina_atual=pagina_atual,
+                                           total_paginas=total_paginas)
                     case 1:
                         for i in protocolos_geral:
                             lista_1.append(i["protocolo"])
@@ -231,5 +249,3 @@ def logout():
 
 if __name__== "__main__":
     app.run(debug=True)
-
-    #Viado
