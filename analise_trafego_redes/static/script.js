@@ -240,6 +240,19 @@ $(document).ready(function() {
       } 
     }
   })
+
+  $('#inputEmail').keydown(function(e) {
+    if (e.key === 'Enter') {
+      const senha = document.getElementById('inputSenha')
+      senha.focus()
+    }
+  })
+
+  $('#inputSenha').keydown(function(e) {
+    if (e.key === 'Enter') {
+      $('#btnLogin').click()
+    }
+  })
 })
 
 function login(email, senha) {
