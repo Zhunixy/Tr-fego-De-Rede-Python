@@ -51,6 +51,12 @@ body{
   margin-top: 8px !important;
 }
 
+.nav-links a.active {
+  color: #2a7fe0;
+  font-weight: bold;
+  border-bottom: 2px solid #2a7fe0;
+}
+
 .icon{
   margin-right: 4px;
 }

@@ -258,6 +258,10 @@ def logout():
         return {'type': 'success'}
     except:
         return {'type': 'error'}
+    
+@app.route("/explicacao")
+def explicacao():
+    return render_template("explicacao.html")
 
 if __name__== "__main__":
     app.run(debug=True)
