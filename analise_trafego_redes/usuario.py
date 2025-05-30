@@ -11,7 +11,7 @@ cursor = conexao.cursor()
 
 def login(email:str, senha:str):
     try:
-        sql = f'SELECT ID FROM USER WHERE EMAIL = "{email}" AND PASSWORD = MD5("{senha}")'
+        sql = f'SELECT ID FROM user WHERE EMAIL = "{email}" AND PASSWORD = MD5("{senha}")'
         cursor.execute(sql)
         sql = cursor.fetchall()
 
@@ -24,7 +24,7 @@ def login(email:str, senha:str):
 
 def cadastro(nome:str, cnpj:str, telefone:str, email:str, senha:str):
     try:
-        sql = f'INSERT INTO USER VALUES (NULL, "{nome}", "{cnpj}", "{telefone}", "{email}", MD5("{senha}"))'
+        sql = f'INSERT INTO user VALUES (NULL, "{nome}", "{cnpj}", "{telefone}", "{email}", MD5("{senha}"))'
         cursor.execute(sql)
         conexao.commit()
 
@@ -34,7 +34,7 @@ def cadastro(nome:str, cnpj:str, telefone:str, email:str, senha:str):
     
 def validate(id:int):
     try:
-        sql = f'SELECT * FROM USER WHERE ID = {id}'
+        sql = f'SELECT * FROM user WHERE ID = {id}'
         cursor.execute(sql)
         sql = cursor.fetchall()
 
@@ -44,7 +44,7 @@ def validate(id:int):
 
 def update(id:int, nome:str, cnpj:str, telefone:str, email:str):
     try:
-        sql = f'UPDATE USER SET NAME = "{nome}", CPF_CNPJ = "{cnpj}", TELEFONE = "{telefone}", EMAIL = "{email}" WHERE ID = {id}'
+        sql = f'UPDATE user SET NAME = "{nome}", CPF_CNPJ = "{cnpj}", TELEFONE = "{telefone}", EMAIL = "{email}" WHERE ID = {id}'
         cursor.execute(sql)
         conexao.commit()
 
