@@ -42,5 +42,15 @@ def validate(id:int):
     except:
         return {}
 
+def update(id:int, nome:str, cnpj:str, telefone:str, email:str, senha:str):
+    try:
+        sql = f'UPDATE USER SET NAME = "{nome}", CPF_CNPJ = "{cnpj}", TELEFONE = "{telefone}", EMAIL = "{email}"'
+        cursor.execute(sql)
+        conexao.commit()
+
+        return {'type': 'success', 'mensagem': 'Dados alterados com sucesso'}
+    except:
+        return {'type': 'error', 'mensagem': 'Não foi possível alterar os dados'}
+
     # cursor.close()
     # conexao.close()
