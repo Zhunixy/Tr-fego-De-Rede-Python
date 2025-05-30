@@ -125,7 +125,6 @@ $(document).ready(function() {
   let modal = 'login'
   const select = document.getElementById('selectOpt')
 
-
   $.ajax({
     type: 'POST',
     dataType: 'json',
@@ -140,12 +139,13 @@ $(document).ready(function() {
 
       if (dados.id != null){
         btnOpt.style.display = 'flex'
-        btnIniciar.style.display = 'block'
         userOpt.textContent = `Olá, ${dados.nome}!`
+        btnIniciar.style.display = 'block'
       }
       else {
         btnLogin.style.display = 'block'
         btn2Login.style.display = 'block'
+        btnOpt.style.display = 'none'
       }
     }
   })
@@ -243,8 +243,7 @@ $(document).ready(function() {
 
   $('#inputEmail').keydown(function(e) {
     if (e.key === 'Enter') {
-      const senha = document.getElementById('inputSenha')
-      senha.focus()
+      inputSenha.focus()
     }
   })
 
@@ -315,7 +314,8 @@ function trocaModal(modal) {
     link.textContent = 'Deseja fazer login?'
     inNome.style.display = 'block'
     inGroup.style.display = 'flex'
-  } else if (modal == 'cadastrar') {
+  } 
+  else if (modal == 'cadastrar') {
     modal = 'login'
     titulo.textContent = 'Login'
     botao.textContent = 'Entrar'

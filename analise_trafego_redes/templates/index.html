@@ -24,6 +24,7 @@
       <div class="opt" id="opt">
         <a href="#" class="user-opt" id="userOpt"></a>
         <div class="select-opt" id="selectOpt">
+          <a href="#" class="options">Meus dados</a>
           <a href="#" class="options">Histórico</a>
           <a href="#" class="options" id="btn-logout">Logout</a>
         </div>
@@ -250,25 +251,25 @@
   <div class="modal-login" id="modalLogin">
     <div class="form-login">
       <div class="modal-header">
-        <h2 id="modal-titulo">Login</h2>
-        <button class="btn-sair" id="sairModal">&times;</button>
+          <h2 id="modal-titulo">Login</h2>
+          <button class="btn-sair" id="sairModal">&times;</button>
       </div>
       <div class="modal-body">
-        <div class="login-form">
-          <input type="text" placeholder="Nome*" name="nome" id="inputNome" style="display: none;" required>
-          <div class="input-group" id="inputGroup">
-            <input type="text" placeholder="CPF/CNPJ*" name="cnpj" id="inputCnpj" style="width: 49%;" required>
-            <input type="text" placeholder="Telefone*" name="telefone" id="inputTelefone" style="width: 49%;" required>
+          <div class="login-form">
+              <input type="text" placeholder="Nome*" name="nome" id="inputNome" style="display: none;" required>
+              <div class="input-group" id="inputGroup">
+              <input type="text" placeholder="CPF/CNPJ*" name="cnpj" id="inputCnpj" style="width: 49%;" required>
+              <input type="text" placeholder="Telefone*" name="telefone" id="inputTelefone" style="width: 49%;" required>
+              </div>
+              <input type="email" placeholder="E-mail*" name="email" id="inputEmail" required>
+              <input type="password" placeholder="Senha*" name="senha" id="inputSenha" required>
+              <button class="btn-modal" id="btnLogin" value="login" name="login">Entrar</button>
           </div>
-          <input type="email" placeholder="E-mail*" name="email" id="inputEmail" required>
-          <input type="password" placeholder="Senha*" name="senha" id="inputSenha" required>
-          <button class="btn-modal" id="btnLogin" value="login" name="login">Entrar</button>
-        </div>
-        <div class="link-cadastrar">
-          <a href="#" id="linkCadastrar">Deseja fazer cadastro?</a>
-        </div>
+          <div class="link-cadastrar">
+              <a href="#" id="linkCadastrar">Deseja fazer cadastro?</a>
+          </div>
       </div>
-    </div>
+  </div>
   </div>
 
   </body>

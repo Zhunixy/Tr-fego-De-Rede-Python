@@ -510,6 +510,7 @@ pre code {
   display: none;
   flex-direction: column;
   border-radius: 5px;
+  /* animation: desce 0.4s ease-out forwards; */
 }
 
 .select-opt .options {
