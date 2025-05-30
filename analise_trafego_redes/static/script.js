@@ -287,12 +287,11 @@ $(document).ready(function() {
     }
   })
 
-  $('#entenda').click(function(e){
+  $('#entenda').click(function(e) {
     e.preventDefault()
-    fim.style.display="block"
-    inicio.style.display="none"
+    fim.style.display = 'block'
+    inicio.style.display = 'none'
   })
-
 })
 
 function login(email, senha) {
